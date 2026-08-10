@@ -1,0 +1,77 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function getRole() {
+      return request.auth.token.role;
+    }
+
+    function isAdmin() {
+      return getRole() in ['admin', 'super_admin'];
+    }
+
+    function isSuperAdmin() {
+      return getRole() == 'super_admin';
+    }
+
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+
+    match /products/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /categories/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /brands/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /settings/{document=**} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+
+    match /users/{uid} {
+      allow read: if isAuthenticated() && (isOwner(uid) || isAdmin());
+      allow update: if isAuthenticated() && (
+        isAdmin() || 
+        (isOwner(uid) && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'permissions', 'status']))
+      );
+      allow create: if isAuthenticated() && isOwner(uid) && (!request.resource.data.keys().hasAny(['role', 'permissions', 'status']) || isAdmin());
+      allow delete: if isAdmin();
+      
+      match /{subcollection=**} {
+        allow read, write: if isAuthenticated() && (isOwner(uid) || isAdmin());
+      }
+    }
+
+    match /orders/{document=**} {
+      allow read: if isAuthenticated() && (isOwner(resource.data.userId) || isAdmin());
+      allow create, update, delete: if false;
+    }
+
+    match /payments/{document} {
+      allow read: if isAuthenticated() && (isOwner(resource.data.userId) || isAdmin());
+      allow write: if false;
+    }
+
+    match /inventory_ledger/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /audit_logs/{document=**} {
+      allow read: if isSuperAdmin();
+      allow write: if false;
+    }
+  }
+}
