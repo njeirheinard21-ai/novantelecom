@@ -10,7 +10,7 @@ export function NewsletterSection() {
             Restez informé.
           </h2>
           <p className="text-lg text-fg-muted mb-8">
-            S'inscrire for the latest news, offers, and product announcements from Alex Apple Store.
+            S'inscrire for the latest news, offers, and product announcements from BestBuy.
           </p>
           
           <form 

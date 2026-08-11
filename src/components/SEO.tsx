@@ -6,7 +6,7 @@ interface SEOProps {
 }
 
 export function SEO({ title, description }: SEOProps) {
-  const defaultTitle = 'ALEX APPLE STORE';
+  const defaultTitle = 'BestBuy';
   const defaultDescription = 'English tagline - this is the default language';
 
   return (

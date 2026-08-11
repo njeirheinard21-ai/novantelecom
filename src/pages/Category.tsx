@@ -197,7 +197,7 @@ export default function Category() {
                           src={product.images[0]} 
                           alt={product.name} 
                           loading="lazy"
-                          className="w-full h-full object-cover"
+                          className={`w-full h-full object-contain ${product.name.includes('iPhone 17 Pro Max') ? 'scale-125 -translate-x-[20%]' : ''}`}
                         />
                       ) : (
                         <div className="w-full h-full bg-canvas-secondary flex items-center justify-center text-gray-400">Image non disponible</div>

@@ -8,9 +8,9 @@ export const fixtureSettingsRepository: SettingsRepository = {
   async get() {
     await delay(150);
     return {
-      storeName: 'Alex Apple Store',
+      storeName: 'BestBuy',
       currency: 'XAF',
-      contactEmail: 'contact@alexapplestore.com',
+      contactEmail: 'contact@bestbuy.com',
       contactPhone: '+237 600000000',
     } as unknown as StoreSettings;
   }

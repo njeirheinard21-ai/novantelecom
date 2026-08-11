@@ -38,7 +38,7 @@ export function Header() {
 
             {/* Logo */}
             <Link to="/" className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity">
-              Alex Apple Store
+              BestBuy
             </Link>
 
             {/* Desktop Navigation */}
