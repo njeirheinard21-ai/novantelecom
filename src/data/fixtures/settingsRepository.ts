@@ -8,9 +8,9 @@ export const fixtureSettingsRepository: SettingsRepository = {
   async get() {
     await delay(150);
     return {
-      storeName: 'BestBuy',
+      storeName: 'Nova Telecom',
       currency: 'XAF',
-      contactEmail: 'contact@bestbuy.com',
+      contactEmail: 'contact@novatelecom.com',
       contactPhone: '+237 600000000',
     } as unknown as StoreSettings;
   }

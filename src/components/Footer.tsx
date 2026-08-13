@@ -11,13 +11,13 @@ const FOOTER_LINKS = {
   ],
   'Compte': [
     { name: 'Gérer votre compte Apple', href: '/account' },
-    { name: 'Compte BestBuy', href: '/account' },
+    { name: 'Compte Nova Telecom', href: '/account' },
   ],
   'À propos': [
     { name: 'Support', href: '/support' },
     { name: 'Services', href: '/services' },
     { name: 'FAQ', href: '/faq' },
-    { name: 'Contacter BestBuy', href: '/contact' },
+    { name: 'Contacter Nova Telecom', href: '/contact' },
   ]
 };
 
@@ -52,7 +52,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-border">
-          <p>&copy; {new Date().getFullYear()} BestBuy. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} Nova Telecom. Tous droits réservés.</p>
           <div className="flex space-x-4">
             <Link to="/legal" className="hover:text-fg hover:underline transition-colors">Politique de confidentialité</Link>
             <span className="hidden md:inline border-l border-border h-3" />

@@ -37,8 +37,8 @@ export function Header() {
             </button>
 
             {/* Logo */}
-            <Link to="/" className="text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity">
-              BestBuy
+            <Link to="/" className="hover:opacity-80 transition-opacity flex items-center">
+              <img src="https://firebasestorage.googleapis.com/v0/b/jo-accessories-44ffa.firebasestorage.app/o/Einort%2FChatGPT%20Image%20Aug%2013%2C%202026%2C%2003_13_57%20PM.png?alt=media&token=90237423-74ca-4647-ad32-18a89c0d7e64" alt="Nova Telecom Logo" className="h-[46px] md:h-[54px] w-auto object-contain" referrerPolicy="no-referrer" />
             </Link>
 
             {/* Desktop Navigation */}
@@ -72,48 +72,56 @@ export function Header() {
       </header>
 
       {/* Mobile Drawer */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] lg:hidden">
-          <div 
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm" 
-            onClick={() => setIsMobileMenuOpen(false)}
-            aria-hidden="true"
-          />
-          <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-canvas shadow-xl flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b border-border">
-              <span className="font-semibold text-lg">Menu</span>
-              <button 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 -mr-2 text-fg hover:text-accent transition-colors"
-                aria-label="Close menu"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto py-4 px-6 flex flex-col space-y-6 text-lg font-medium">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="text-fg hover:text-accent transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <hr className="border-border" />
+      <div 
+        className={`fixed inset-0 z-[60] lg:hidden pointer-events-none transition-opacity duration-300 ${
+          isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <div 
+          className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
+            isMobileMenuOpen ? 'pointer-events-auto opacity-100' : 'opacity-0'
+          }`} 
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+        <div 
+          className={`absolute inset-y-0 left-0 w-[85%] max-w-sm bg-canvas shadow-2xl flex flex-col transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isMobileMenuOpen ? 'translate-x-0 pointer-events-auto' : '-translate-x-full pointer-events-none'
+          }`}
+        >
+          <div className="flex items-center justify-between p-5 border-b border-border/40">
+            <span className="font-semibold text-lg tracking-tight">Menu</span>
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 -mr-2 text-fg-muted hover:text-fg transition-colors bg-canvas-secondary rounded-full"
+              aria-label="Close menu"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <div className="flex-1 overflow-y-auto py-6 px-6 flex flex-col space-y-6 text-lg font-medium">
+            {NAV_LINKS.map((link) => (
               <Link
-                to="/account"
-                className="flex items-center space-x-3 text-fg hover:text-accent transition-colors"
+                key={link.name}
+                to={link.href}
+                className="text-fg/80 hover:text-fg hover:translate-x-1 transform transition-all"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <User className="h-5 w-5" />
-                <span>Account</span>
+                {link.name}
               </Link>
-            </div>
+            ))}
+            <hr className="border-border/40 my-4" />
+            <Link
+              to="/account"
+              className="flex items-center space-x-3 text-fg/80 hover:text-fg hover:translate-x-1 transform transition-all"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <User className="h-5 w-5" />
+              <span>Account</span>
+            </Link>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

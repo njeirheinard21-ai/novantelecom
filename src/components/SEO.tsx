@@ -6,7 +6,7 @@ interface SEOProps {
 }
 
 export function SEO({ title, description }: SEOProps) {
-  const defaultTitle = 'BestBuy';
+  const defaultTitle = 'Nova Telecom';
   const defaultDescription = 'English tagline - this is the default language';
 
   return (

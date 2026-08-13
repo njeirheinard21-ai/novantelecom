@@ -179,8 +179,16 @@ export default function Category() {
         {/* Product Grid */}
         <div className="flex-1">
           {isLoading ? (
-            <div className="flex items-center justify-center h-64">
-              <p className="text-fg-muted">Chargement...</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-canvas-secondary rounded-2xl p-6">
+                  <div className="aspect-square w-full mb-6 rounded-3xl bg-border/30 animate-pulse"></div>
+                  <div className="h-6 bg-border/30 rounded-lg w-2/3 mb-3 animate-pulse"></div>
+                  <div className="h-4 bg-border/30 rounded-lg w-full mb-2 animate-pulse"></div>
+                  <div className="h-4 bg-border/30 rounded-lg w-4/5 mb-5 animate-pulse"></div>
+                  <div className="h-5 bg-border/30 rounded-lg w-1/3 animate-pulse"></div>
+                </div>
+              ))}
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 bg-canvas-secondary rounded-3xl">
@@ -197,7 +205,7 @@ export default function Category() {
                           src={product.images[0]} 
                           alt={product.name} 
                           loading="lazy"
-                          className={`w-full h-full object-contain ${product.name.includes('iPhone 17 Pro Max') ? 'scale-125 -translate-x-[20%]' : ''}`}
+                          className="w-full h-full object-contain"
                         />
                       ) : (
                         <div className="w-full h-full bg-canvas-secondary flex items-center justify-center text-gray-400">Image non disponible</div>
