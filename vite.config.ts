@@ -7,6 +7,8 @@ export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
     build: {
+      target: ['es2020', 'safari15.4', 'chrome87', 'firefox78', 'edge88'],
+      chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
           manualChunks: {

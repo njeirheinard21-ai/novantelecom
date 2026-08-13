@@ -4,8 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nova Telecom</title>
+
+    <meta property="og:title" content="Nova Telecom" />
+    <meta property="og:description" content="Nova Telecom Description" />
+    <meta property="og:url" content="https://einortsolutions.com/ <!-- SITE_URL -->" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nova Telecom" />
+    <meta property="og:image" content="https://einortsolutions.com/ <!-- SITE_URL -->og-image.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://einortsolutions.com/ <!-- SITE_URL -->og-image.jpg" />
+
   </head>
   <body>
+    <noscript>
+      <div style="padding: 20px; font-family: sans-serif; text-align: center;">
+        <h2>Nova Telecom</h2>
+        <p>JavaScript is required to view this site. / JavaScript est requis pour voir ce site.</p>
+        <p>Email: contact@novatelecom.com | Phone / Tél: +1 234 567 890</p>
+        <p>WhatsApp: <a href="https://wa.me/1234567890">Contact us on WhatsApp / Contactez-nous sur WhatsApp</a></p>
+      </div>
+    </noscript>
+
+    <style>
+      #legacy-browser-notice {
+        position: fixed;
+        top: 0; left: 0; right: 0; z-index: 999999;
+        background: #fff3cd; color: #856404;
+        padding: 20px; font-family: sans-serif; text-align: center;
+        border-bottom: 2px solid #ffeeba;
+      }
+      @supports (color: color-mix(in oklab, red, blue)) {
+        #legacy-browser-notice { display: none; }
+      }
+    </style>
+    <div id="legacy-browser-notice">
+      <p>Your browser is out of date and some features may not display correctly. Please update Safari or use a different browser.</p>
+      <p>Votre navigateur est obsolète et certaines fonctionnalités peuvent ne pas s'afficher correctement. Veuillez mettre à jour Safari ou utiliser un autre navigateur.</p>
+      <p>WhatsApp: <a href="https://wa.me/1234567890">Contact us / Contactez-nous</a></p>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
