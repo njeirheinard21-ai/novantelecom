@@ -216,8 +216,6 @@ router.post('/track', trackingLimiter, asyncHandler(async (req: any, res: any) =
 
 // Add admin routes for orders later if needed
 
-export default router;
-
 // Admin routes
 router.get('/admin', requireAuth, requirePermission('orders:read'), asyncHandler(async (req: any, res: any) => {
   // We'll need a check for admin role here. For now, we assume requireAuth does basic auth.
@@ -309,3 +307,5 @@ router.get('/:id', requireAuth, asyncHandler(async (req: any, res: any) => {
   res.json({ id: doc.id, ...order });
 }));
 
+
+export default router;

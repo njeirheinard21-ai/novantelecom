@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
+import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { useState } from 'react';
-import { Link } from 'react-router';
 import { resetPassword } from '../../lib/auth';
 import { Container } from '../../components/ui/Container';
 
 export default function ResetPassword() {
+  const { t } = useTranslation(['auth', 'common']);
+
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -23,8 +26,8 @@ export default function ResetPassword() {
   return (
     <Container className="py-24 max-w-md mx-auto">
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-semibold tracking-tight mb-2">Reset Password</h1>
-        <p className="text-fg-muted">Enter your Apple ID to reset your password.</p>
+        <h1 className="text-4xl font-semibold tracking-tight mb-2">{t('reset_password', { ns: 'auth' })}</h1>
+        <p className="text-fg-muted">{t('enter_apple_id_reset', { ns: 'auth' })}</p>
       </div>
 
       {error && <div className="bg-red-50 text-red-500 p-4 rounded-2xl mb-6 text-sm">{error}</div>}
@@ -33,7 +36,7 @@ export default function ResetPassword() {
       <div className="bg-canvas border border-border/50 rounded-[2rem] p-8 shadow-sm">
         <form onSubmit={handleReset} className="space-y-5">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">Apple ID</label>
+            <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">{t('apple_id', { ns: 'auth' })}</label>
             <input 
               id="email" 
               type="email" 
@@ -50,7 +53,7 @@ export default function ResetPassword() {
       </div>
       
       <div className="mt-8 text-center text-sm text-fg-muted">
-        <Link to="/login" className="text-accent hover:underline">Return to Sign In</Link>
+        <Link to="/login" className="text-accent hover:underline">{t('return_to_sign_in', { ns: 'auth' })}</Link>
       </div>
     </Container>
   );

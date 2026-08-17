@@ -1,29 +1,33 @@
+import { useTranslation } from 'react-i18next';
 import { SEO } from '../../components/SEO';
 import { Container } from '../../components/ui/Container';
+import { siteConfig } from '../../config/site';
 
 export default function Contact() {
+  const { t } = useTranslation('common');
+
   return (
-    <div className="py-24 min-h-[60vh] bg-canvas-secondary/30">
-      <SEO title="Contact" />
-      <Container className="max-w-3xl">
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8">Contact</h1>
-        
-        <div className="bg-canvas border border-border/50 rounded-[2rem] p-8 md:p-12 shadow-sm">
-          <p className="text-xl text-fg-muted font-medium mb-6">
-            This section is currently being updated.
+    <div className="flex flex-col w-full min-h-[60vh]">
+      <SEO title="Contact Us" />
+      <div className="bg-canvas-secondary py-12 border-b">
+        <Container>
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
+            Contact Us
+          </h1>
+          <p className="text-xl text-fg-muted max-w-2xl">
+            Get in touch with the Nova Telecom team for sales, support, and inquiries.
           </p>
-          <div className="space-y-6 text-fg/80 leading-relaxed">
-            <p>
-              We are working to bring you the best possible experience. Check back soon for more details regarding our contact policies and options.
-            </p>
-            <p>
-              If you have immediate questions, please reach out to our support team or visit an Apple Store near you.
-            </p>
-          </div>
-          <div className="mt-10 pt-8 border-t border-border/50">
-            <a href="/" className="text-accent font-medium hover:underline">
-              Return to Homepage
-            </a>
+        </Container>
+      </div>
+
+      <Container className="py-12">
+        <div className="max-w-2xl bg-canvas-secondary rounded-2xl p-8">
+          <h2 className="text-2xl font-semibold mb-6">Store Location & Details</h2>
+          <div className="space-y-4 text-lg">
+            <p><strong>Address:</strong> {siteConfig.contact.address}</p>
+            <p><strong>Email:</strong> <a href={`mailto:${siteConfig.contact.email}`} className="text-accent hover:underline">{siteConfig.contact.email}</a></p>
+            <p><strong>Phone:</strong> <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`} className="text-accent hover:underline">{siteConfig.contact.phone}</a></p>
+            <p><strong>WhatsApp:</strong> <a href={siteConfig.contact.whatsapp} target="_blank" rel="noreferrer" className="text-accent hover:underline">{t('message_us_whatsapp')}</a></p>
           </div>
         </div>
       </Container>

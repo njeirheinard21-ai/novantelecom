@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
+import { useLocalizedNavigate as useNavigate } from '../../hooks/useLocalizedNavigate';
+import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router';
+import { useParams, } from 'react-router';
 import { getCustomerOrder } from '../../lib/api/orders';
 import { formatPrice } from '../../lib/money';
 import { ArrowLeft, Package, Truck, CheckCircle2, Clock } from 'lucide-react';
 
 export default function OrderDetails() {
+  const { t } = useTranslation(['checkout', 'common']);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [order, setOrder] = useState<any>(null);
@@ -109,7 +113,7 @@ export default function OrderDetails() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-canvas border border-border/50 rounded-[2rem] p-6 sm:p-8 shadow-sm">
-            <h3 className="text-xl font-semibold mb-6">Items</h3>
+            <h3 className="text-xl font-semibold mb-6">{t('items', { ns: 'account' })}</h3>
             <div className="space-y-6">
               {order.items?.map((item: any, idx: number) => (
                 <div key={idx} className="flex items-start justify-between pb-6 border-b border-border/50 last:border-0 last:pb-0">
@@ -126,22 +130,22 @@ export default function OrderDetails() {
 
         <div className="space-y-6">
           <div className="bg-canvas border border-border/50 rounded-[2rem] p-6 sm:p-8 shadow-sm">
-            <h3 className="text-xl font-semibold mb-6">Summary</h3>
+            <h3 className="text-xl font-semibold mb-6">{t('summary', { ns: 'account' })}</h3>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
-                <span className="text-fg-muted">Subtotal</span>
+                <span className="text-fg-muted">{t('subtotal', { ns: 'checkout' })}</span>
                 <span>{formatPrice(order.subtotal)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-fg-muted">Shipping</span>
+                <span className="text-fg-muted">{t('shipping', { ns: 'checkout' })}</span>
                 <span>{formatPrice(order.shipping)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-fg-muted">Tax</span>
+                <span className="text-fg-muted">{t('tax', { ns: 'account' })}</span>
                 <span>{formatPrice(order.tax)}</span>
               </div>
               <div className="pt-4 mt-4 border-t border-border/50 flex justify-between font-bold text-lg">
-                <span>Total</span>
+                <span>{t('total', { ns: 'common' })}</span>
                 <span>{formatPrice(order.total)}</span>
               </div>
             </div>

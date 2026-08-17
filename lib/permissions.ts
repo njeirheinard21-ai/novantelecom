@@ -13,7 +13,7 @@ export const PERMISSIONS: Record<Permission, Role[]> = {
   'products:write': ['admin', 'super_admin'],
   'inventory:read': ['staff', 'admin', 'super_admin'],
   'inventory:adjust': ['admin', 'super_admin'],
-  'orders:read': ['customer', 'staff', 'admin', 'super_admin'],
+  'orders:read': ['staff', 'admin', 'super_admin'],
   'orders:update': ['staff', 'admin', 'super_admin'],
   'customers:read': ['staff', 'admin', 'super_admin'],
   'users:read': ['staff', 'admin', 'super_admin'],
