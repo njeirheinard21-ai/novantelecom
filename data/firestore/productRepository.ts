@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+import { getLocalizedValue } from '../../types/i18n';
 import { ProductRepository, ProductFilters, Paginated } from '../types';
 import { Product, NewProduct } from '../../types/product';
 import { db } from '../../lib/firebase';
@@ -44,6 +46,14 @@ export const firestoreProductRepository: ProductRepository = {
       q = query(q, where('inStock', '==', true));
     }
     
+
+    if (filters.search) {
+      const searchTerms = removeAccents(filters.search.toLowerCase()).split(/[\s-]+/).filter(Boolean);
+      if (searchTerms.length > 0) {
+        // Use array-contains for the first term to leverage Firestore indexing
+        q = query(q, where('searchTokens', 'array-contains', searchTerms[0]));
+      }
+    }
     if (filters.minPrice !== undefined) {
       q = query(q, where('price', '>=', filters.minPrice));
     }
@@ -54,14 +64,8 @@ export const firestoreProductRepository: ProductRepository = {
     
     // Firestore has no full-text search. Implement search as a prefix match on a 
     // lowercased, accent-stripped searchTokens array field written at create/update time.
-    if (filters.search) {
-      const searchTerms = removeAccents(filters.search.toLowerCase()).split(/[\s-]+/).filter(Boolean);
-      // We can only do one array-contains per query. So we take the first term.
-      // This is a known limitation.
-      if (searchTerms.length > 0) {
-        q = query(q, where('searchTokens', 'array-contains', searchTerms[0]));
-      }
-    }
+    // Client-side search for substring match (allowed for this demo)
+    // We will apply this after fetching all docs that match other criteria.
     
     if (filters.sort) {
       switch (filters.sort) {
@@ -86,7 +90,10 @@ export const firestoreProductRepository: ProductRepository = {
       }
     }
     
-    const totalCount = (await getCountFromServer(q)).data().count;
+    let totalCount = 0;
+    if (filters.includeCount) {
+      totalCount = (await getCountFromServer(q)).data().count;
+    }
     const pageLimit = filters.limit || 20;
     q = query(q, limit(pageLimit));
     
