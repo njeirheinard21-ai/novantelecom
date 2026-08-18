@@ -1,14 +1,10 @@
-import { useTranslation } from 'react-i18next';
-import { useLocalizedNavigate as useNavigate } from '../../hooks/useLocalizedNavigate';
-import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { useState } from 'react';
-import { useLocation } from 'react-router';
+import { Link, useNavigate, useLocation } from 'react-router';
 import { loginWithEmail, loginWithGoogle } from '../../lib/auth';
 import { AuthLayout } from './AuthLayout';
 import { Apple, ArrowRight } from 'lucide-react';
 
 export default function Login() {
-  const { t } = useTranslation(['auth']);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -70,7 +66,7 @@ export default function Login() {
         
         <div>
           <div className="flex justify-between items-center mb-2">
-            <label htmlFor="password" className="block text-sm font-medium text-fg-muted">{t('password', { ns: 'auth' })}</label>
+            <label htmlFor="password" className="block text-sm font-medium text-fg-muted">Password</label>
             <Link to="/reset-password" className="text-sm text-accent font-medium hover:underline">
               Forgot password?
             </Link>
@@ -98,7 +94,7 @@ export default function Login() {
       
       <div className="mt-8 flex items-center justify-between">
         <hr className="w-full border-border/50" />
-        <span className="px-4 text-xs text-fg-muted font-medium uppercase tracking-wider bg-canvas">{t('continue_with', { ns: 'auth' })}</span>
+        <span className="px-4 text-xs text-fg-muted font-medium uppercase tracking-wider bg-canvas">Continue with</span>
         <hr className="w-full border-border/50" />
       </div>
       

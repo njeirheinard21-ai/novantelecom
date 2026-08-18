@@ -1,4 +1,3 @@
-import { I18nHelmet } from './components/I18nHelmet';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { lazy } from 'react';
 import { lazyWithRetry } from './lib/lazyWithRetry';
@@ -7,7 +6,7 @@ import { RouteGuard } from './components/auth/RouteGuard';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { RootLayout } from './components/RootLayout';
 import { NotFound } from './components/NotFound';
-const AdminLayout = lazyWithRetry(() => import('./components/admin/AdminLayout').then(m => ({ default: m.AdminLayout })));
+import { AdminLayout } from './components/admin/AdminLayout';
 
 const Home = lazyWithRetry(() => import('./pages/Home'));
 const Category = lazyWithRetry(() => import('./pages/Category'));
@@ -55,64 +54,18 @@ const Search = lazyWithRetry(() => import('./pages/info/Search'));
 const Wishlist = lazyWithRetry(() => import('./pages/info/Wishlist'));
 
 
-
-import { Navigate, Outlet, useParams } from 'react-router';
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-
-function LangRedirect() {
-  const { i18n } = useTranslation();
-  const currentLang = i18n.language?.split('-')[0] || 'en';
-  const targetLang = ['en', 'fr'].includes(currentLang) ? currentLang : 'en';
-  return <Navigate to={`/${targetLang}`} replace />;
-}
-
-import { useLocation } from 'react-router';
-
-function LangSync() {
-  const { lang } = useParams();
-  const { i18n } = useTranslation();
-  const location = useLocation();
-
-  if (lang && !['en', 'fr'].includes(lang)) {
-    const currentLang = i18n.language?.split('-')[0] || 'en';
-    const targetLang = ['en', 'fr'].includes(currentLang) ? currentLang : 'en';
-    
-    let newPath = '';
-    // Check if the path part is an unsupported locale like 'es', 'pt-BR', 'zh-TW'
-    if (/^[a-z]{2}(-[A-Z]{2})?$/i.test(lang)) {
-      newPath = `/${targetLang}${location.pathname.substring(lang.length + 1)}`;
-    } else {
-      // It's likely a valid app route but the user forgot the language prefix (e.g. /login)
-      newPath = `/${targetLang}${location.pathname}`;
-    }
-    
-    return <Navigate to={`${newPath}${location.search}`} replace />;
-  }
-
-  useEffect(() => {
-    if (lang && ['en', 'fr'].includes(lang) && i18n.language !== lang) {
-      i18n.changeLanguage(lang);
-    }
-  }, [lang, i18n]);
-  return <Outlet />;
-}
-
 export default function App() {
   return (
     <ErrorBoundary><div className="bg-surface/50"></div>
       <AuthProvider>
         <BrowserRouter>
-          <I18nHelmet />
           <Routes>
-            <Route path="/" element={<LangRedirect />} />
-            <Route path="/:lang" element={<LangSync />}>
-              <Route element={<RootLayout />}>
+            <Route element={<RootLayout />}>
               <Route index element={<Home />} />
-              <Route path="category/:id" element={<Category />} />
-              <Route path="product/:id" element={<Product />} />
+              <Route path="/category/:id" element={<Category />} />
+              <Route path="/product/:id" element={<Product />} />
 
-              <Route path="account" element={<RouteGuard requireAuth><AccountLayout /></RouteGuard>}>
+              <Route path="/account" element={<RouteGuard requireAuth><AccountLayout /></RouteGuard>}>
                 <Route index element={<Overview />} />
                 <Route path="orders" element={<Orders />} />
                 <Route path="orders/:id" element={<OrderDetails />} />
@@ -124,7 +77,7 @@ export default function App() {
                 <Route path="wishlist" element={<AccountWishlist />} />
               </Route>
 
-<Route path="admin" element={<RouteGuard requireAuth requirePermission="orders:read"><AdminLayout /></RouteGuard>}>
+<Route path="/admin" element={<RouteGuard requireAuth requirePermission="orders:read"><AdminLayout /></RouteGuard>}>
                 <Route index element={<Dashboard />} />
                 <Route path="products" element={<RouteGuard requireAuth requirePermission="products:read"><AdminProductList /></RouteGuard>} />
                 <Route path="products/new" element={<RouteGuard requireAuth requirePermission="products:write"><AdminProductForm /></RouteGuard>} />
@@ -138,29 +91,28 @@ export default function App() {
               </Route>
               
               
-              <Route path="checkout" element={<RouteGuard requireAuth><Checkout /></RouteGuard>} />
-              <Route path="checkout/wait" element={<RouteGuard requireAuth><CheckoutWait /></RouteGuard>} />
-              <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
-              <Route path="reset-password" element={<ResetPassword />} />
+              <Route path="/checkout" element={<RouteGuard requireAuth><Checkout /></RouteGuard>} />
+              <Route path="/checkout/wait" element={<RouteGuard requireAuth><CheckoutWait /></RouteGuard>} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               
               
-              <Route path="services" element={<Services />} />
-              <Route path="support" element={<Support />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="trade-in" element={<TradeIn />} />
-              <Route path="repairs" element={<Repairs />} />
-              <Route path="financing" element={<Financing />} />
-              <Route path="warranty" element={<Warranty />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/support" element={<Support />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/trade-in" element={<TradeIn />} />
+              <Route path="/repairs" element={<Repairs />} />
+              <Route path="/financing" element={<Financing />} />
+              <Route path="/warranty" element={<Warranty />} />
 
-              <Route path="faq" element={<FAQ />} />
-              <Route path="legal" element={<Legal />} />
-              <Route path="search" element={<Search />} />
-              <Route path="wishlist" element={<RouteGuard requireAuth><Wishlist /></RouteGuard>} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/legal" element={<Legal />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/wishlist" element={<RouteGuard requireAuth><Wishlist /></RouteGuard>} />
 
 
               <Route path="*" element={<NotFound />} />
-              </Route>
             </Route>
           </Routes>
         </BrowserRouter>

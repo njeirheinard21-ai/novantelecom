@@ -1,12 +1,10 @@
-import { useTranslation } from 'react-i18next';
-import { LocalizedLink as Link } from '../../../components/ui/LocalizedLink';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { getAdminOrders } from '../../../lib/api/orders';
 import { formatPrice } from '../../../lib/money';
 import { ChevronRight, Search } from 'lucide-react';
 
 export default function AdminOrderList() {
-  const { t } = useTranslation(['account', 'common']);
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +47,7 @@ export default function AdminOrderList() {
     <div className="space-y-10">
       <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight text-fg">{t('orders', { ns: 'account' })}</h1>
+          <h1 className="text-3xl font-semibold tracking-tight text-fg">Orders</h1>
           <p className="text-fg-muted mt-2 text-sm">Manage and fulfill customer orders.</p>
         </div>
         <div className="relative">
@@ -77,7 +75,7 @@ export default function AdminOrderList() {
       {error && (
         <div className="bg-red-50 text-red-600 p-4 rounded-xl mb-6 text-sm border border-red-100">
           <p>{error}</p>
-          <button onClick={fetchOrders} className="mt-2 font-semibold hover:underline">{t('retry', { ns: 'common' })}</button>
+          <button onClick={fetchOrders} className="mt-2 font-semibold hover:underline">Retry</button>
         </div>
       )}
 
@@ -98,10 +96,10 @@ export default function AdminOrderList() {
               <thead>
                 <tr className="bg-canvas-secondary/50 border-b border-border/40">
                   <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Order</th>
-                  <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">{t('date', { ns: 'common' })}</th>
+                  <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Date</th>
                   <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Customer</th>
-                  <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">{t('total', { ns: 'common' })}</th>
-                  <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">{t('status', { ns: 'common' })}</th>
+                  <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Total</th>
+                  <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Status</th>
                   <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider text-right">Action</th>
                 </tr>
               </thead>

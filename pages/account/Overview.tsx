@@ -1,13 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { useAuthStore } from '../../store/authStore';
 import { Package, Heart, MapPin, User, ChevronRight, Shield } from 'lucide-react';
 import { getCustomerOrders } from '../../lib/api/orders';
 import { formatPrice } from '../../lib/money';
 
 export default function Overview() {
-  const { t } = useTranslation(['account']);
   const user = useAuthStore(state => state.user);
   const [recentOrders, setRecentOrders] = useState<any[]>([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
@@ -36,7 +34,7 @@ export default function Overview() {
 
   return (
     <div className="space-y-10">
-      <h2 className="text-2xl font-semibold tracking-tight hidden lg:block">{t('overview', { ns: 'account' })}</h2>
+      <h2 className="text-2xl font-semibold tracking-tight hidden lg:block">Overview</h2>
       
       {/* Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -61,7 +59,7 @@ export default function Overview() {
       {/* Recent Orders */}
       <div className="bg-canvas border border-border/50 rounded-[2rem] p-6 sm:p-8">
         <div className="flex items-center justify-between mb-8">
-          <h3 className="text-xl font-semibold tracking-tight">{t('recent_orders', { ns: 'account' })}</h3>
+          <h3 className="text-xl font-semibold tracking-tight">Recent Orders</h3>
           <Link to="/account/orders" className="text-accent text-sm font-medium hover:underline">
             View All
           </Link>
@@ -76,8 +74,8 @@ export default function Overview() {
         ) : recentOrders.length === 0 ? (
           <div className="text-center py-12 border border-dashed border-border/50 rounded-2xl">
             <Package className="w-12 h-12 text-border mx-auto mb-4" />
-            <p className="text-fg-muted font-medium mb-2">{t('no_orders_yet', { ns: 'account' })}</p>
-            <p className="text-sm text-fg-muted mb-6">{t('next_apple_experience', { ns: 'account' })}</p>
+            <p className="text-fg-muted font-medium mb-2">No orders yet.</p>
+            <p className="text-sm text-fg-muted mb-6">Your next great Apple experience is waiting.</p>
             <Link to="/" className="inline-flex items-center justify-center rounded-full bg-accent text-white px-6 py-2.5 text-sm font-medium hover:bg-accent/90 transition-colors">
               Explore Products
             </Link>

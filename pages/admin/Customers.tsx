@@ -1,9 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { auth } from '../../lib/auth';
 
 export default function Customers() {
-  const { t } = useTranslation(['account', 'common']);
   const [customers, setCustomers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -13,7 +11,7 @@ export default function Customers() {
     setLoading(false);
   }, []);
 
-  if (loading) return <div>{t('loading', { ns: 'common' })}</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="space-y-6">
@@ -26,7 +24,7 @@ export default function Customers() {
             <thead className="bg-canvas-secondary border-b">
               <tr>
                 <th className="p-4 font-medium text-fg-muted text-sm">Customer</th>
-                <th className="p-4 font-medium text-fg-muted text-sm">{t('orders', { ns: 'account' })}</th>
+                <th className="p-4 font-medium text-fg-muted text-sm">Orders</th>
                 <th className="p-4 font-medium text-fg-muted text-sm">Total Spent</th>
               </tr>
             </thead>

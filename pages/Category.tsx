@@ -1,21 +1,18 @@
-import { useTranslation } from 'react-i18next';
-import { getLocalizedValue } from '../types/i18n';
-import { LocalizedLink as Link } from '../components/ui/LocalizedLink';
 import { useParams, useSearchParams } from 'react-router';
 import { SEO } from '../components/SEO';
 import { Container } from '../components/ui/Container';
-import { useProducts } from '../hooks/useProducts';
+import { productRepository } from '../data';
 import { useEffect, useState, useMemo } from 'react';
 import { Product } from '../types/product';
 import { formatPrice } from '../lib/money';
+import { Link } from 'react-router';
 import { useDebounce } from '../lib/hooks'; // we will create this
 
 export default function Category() {
-  const { t, i18n } = useTranslation();
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  
-  
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
   
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
@@ -29,8 +26,20 @@ export default function Category() {
     setSearchParams(searchParams, { replace: true });
   }, [debouncedSearchTerm, setSearchParams, searchParams]);
 
-  const { data, isLoading } = useProducts({ categoryId: id!, search: debouncedSearchTerm, limit: 100 });
-  const products = data?.items || [];
+  useEffect(() => {
+    async function loadProducts() {
+      setIsLoading(true);
+      try {
+        const results = await productRepository.list({ categoryId: id!, search: debouncedSearchTerm });
+        setProducts(results.items);
+      } catch (error) {
+        console.error('Failed to load products', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadProducts();
+  }, [id, debouncedSearchTerm]);
 
   // Extract lines and generations for SINGLE_BRAND logic
   const lines = useMemo(() => {
@@ -75,11 +84,11 @@ export default function Category() {
 
   return (
     <div className="flex flex-col w-full min-h-[60vh] pb-12">
-      <SEO title={`${t('buy')} ${id}`} />
+      <SEO title={`Acheter ${id}`} />
       <div className="bg-canvas-secondary py-12 border-b">
         <Container>
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight capitalize mb-4">
-            {t('buy')} {id}
+            Acheter {id}
           </h1>
           <p className="text-xl text-fg-muted">
             Tous les modèles.
@@ -91,11 +100,11 @@ export default function Category() {
         {/* Facets Sidebar */}
         <aside className="w-full md:w-64 flex-shrink-0" aria-label="Filtres">
           <div className="mb-6">
-            <label htmlFor="search-input" className="block text-sm font-medium text-gray-700 mb-1">{t('search')}</label>
+            <label htmlFor="search-input" className="block text-sm font-medium text-gray-700 mb-1">Recherche</label>
             <input 
               id="search-input"
               type="text" 
-              placeholder={t('search_placeholder')} 
+              placeholder="Rechercher..." 
               className="w-full rounded-xl border border-border/50 p-2"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -104,7 +113,7 @@ export default function Category() {
 
           {lines.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-semibold mb-3">{t('line')}</h3>
+              <h3 className="font-semibold mb-3">Ligne</h3>
               <ul className="space-y-2">
                 <li>
                   <button 
@@ -136,7 +145,7 @@ export default function Category() {
 
           {generations.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-semibold mb-3">{t('generation')}</h3>
+              <h3 className="font-semibold mb-3">Génération</h3>
               <ul className="space-y-2">
                 <li>
                   <button 
@@ -183,7 +192,7 @@ export default function Category() {
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 bg-canvas-secondary rounded-3xl">
-              <p className="text-fg-muted text-lg">{t('no_products_found')}</p>
+              <p className="text-fg-muted text-lg">Aucun produit trouvé.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -194,16 +203,16 @@ export default function Category() {
                       {product.images && product.images.length > 0 ? (
                         <img 
                           src={product.images[0]} 
-                          alt={getLocalizedValue(product.name as any, i18n?.language || 'en')} 
+                          alt={product.name} 
                           loading="lazy"
                           className="w-full h-full object-contain"
                         />
                       ) : (
-                        <div className="w-full h-full bg-canvas-secondary flex items-center justify-center text-gray-400">{t('image_not_available')}</div>
+                        <div className="w-full h-full bg-canvas-secondary flex items-center justify-center text-gray-400">Image non disponible</div>
                       )}
                     </div>
                     <h3 className="text-lg font-semibold tracking-tight text-fg group-hover:text-accent transition-colors">
-                      {getLocalizedValue(product.name as any, i18n?.language || 'en')}
+                      {product.name}
                     </h3>
                     <p className="mt-2 text-sm text-fg-muted line-clamp-2">{product.description}</p>
                     <p className="mt-4 font-medium text-fg">{formatPrice(product.price)}</p>

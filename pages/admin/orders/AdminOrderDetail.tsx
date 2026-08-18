@@ -1,7 +1,5 @@
-import { useTranslation } from 'react-i18next';
-import { LocalizedLink as Link } from '../../../components/ui/LocalizedLink';
 import { useEffect, useState } from 'react';
-import { useParams, } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { getAdminOrder, updateOrderStatus } from '../../../lib/api/orders';
 import { formatPrice } from '../../../lib/money';
 import { Button } from '../../../components/ui/Button';
@@ -11,7 +9,6 @@ const STATUS_OPTIONS = [
 ];
 
 export default function AdminOrderDetail() {
-  const { t } = useTranslation(['checkout', 'common']);
   const { id } = useParams();
   const [order, setOrder] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -51,13 +48,13 @@ export default function AdminOrderDetail() {
     }
   };
 
-  if (loading) return <div><p>{t('loading', { ns: 'common' })}</p></div>;
+  if (loading) return <div><p>Loading...</p></div>;
 
   if (error && !order) return (
     <div>
       <div className="bg-red-50 text-red-600 p-4 rounded-xl">
         <p>{error}</p>
-        <button onClick={fetchOrder} className="mt-2 text-sm underline">{t('retry', { ns: 'common' })}</button>
+        <button onClick={fetchOrder} className="mt-2 text-sm underline">Retry</button>
       </div>
     </div>
   );
@@ -82,7 +79,7 @@ export default function AdminOrderDetail() {
           </div>
           <div className="flex items-center gap-4 bg-canvas-secondary p-4 rounded-2xl border">
             <div>
-              <div data-for="orderStatus" className="block text-xs font-semibold text-fg-muted mb-1 uppercase tracking-wide">{t('status', { ns: 'common' })}</div>
+              <label className="block text-xs font-semibold text-fg-muted mb-1 uppercase tracking-wide">Status</label>
               <select 
                 className="border-border/50 rounded-xl text-sm p-1.5 bg-canvas"
                 value={newStatus}
@@ -125,13 +122,13 @@ export default function AdminOrderDetail() {
             <div className="bg-canvas-secondary p-6 rounded-2xl border">
               <h2 className="text-lg font-semibold mb-4">Financial Summary</h2>
               <div className="space-y-3 text-sm">
-                <div className="flex justify-between text-fg/80"><p>{t('subtotal', { ns: 'checkout' })}</p><p>{formatPrice(order.subtotal)}</p></div>
-                <div className="flex justify-between text-fg/80"><p>{t('shipping', { ns: 'checkout' })}</p><p>{formatPrice(order.shipping)}</p></div>
+                <div className="flex justify-between text-fg/80"><p>Subtotal</p><p>{formatPrice(order.subtotal)}</p></div>
+                <div className="flex justify-between text-fg/80"><p>Shipping</p><p>{formatPrice(order.shipping)}</p></div>
                 {order.taxContext.taxEnabled && (
                   <div className="flex justify-between text-fg/80"><p>{order.taxContext.taxLabel}</p><p>{formatPrice(order.tax)}</p></div>
                 )}
                 <div className="flex justify-between font-bold text-lg pt-3 border-t border-gray-200 mt-3">
-                  <p>{t('total', { ns: 'common' })}</p><p>{formatPrice(order.total)}</p>
+                  <p>Total</p><p>{formatPrice(order.total)}</p>
                 </div>
               </div>
             </div>

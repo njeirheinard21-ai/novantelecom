@@ -1,14 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { useLocalizedNavigate as useNavigate } from '../../hooks/useLocalizedNavigate';
-import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { registerWithEmail } from '../../lib/auth';
 import { userRepository } from '../../data';
 import { AuthLayout } from './AuthLayout';
 import { ArrowRight } from 'lucide-react';
 
 export default function Register() {
-  const { t } = useTranslation(['auth']);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -55,7 +52,7 @@ export default function Register() {
       <form onSubmit={handleRegister} className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="block text-sm font-medium mb-2 text-fg-muted">{t('first_name', { ns: 'auth' })}</label>
+            <label htmlFor="firstName" className="block text-sm font-medium mb-2 text-fg-muted">First Name</label>
             <input 
               id="firstName" 
               type="text" 
@@ -66,7 +63,7 @@ export default function Register() {
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium mb-2 text-fg-muted">{t('last_name', { ns: 'auth' })}</label>
+            <label htmlFor="lastName" className="block text-sm font-medium mb-2 text-fg-muted">Last Name</label>
             <input 
               id="lastName" 
               type="text" 
@@ -79,7 +76,7 @@ export default function Register() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">{t('email', { ns: 'auth' })}</label>
+          <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">Email</label>
           <input 
             id="email" 
             type="email" 
@@ -92,7 +89,7 @@ export default function Register() {
         </div>
         
         <div>
-          <label htmlFor="password" className="block text-sm font-medium mb-2 text-fg-muted">{t('password', { ns: 'auth' })}</label>
+          <label htmlFor="password" className="block text-sm font-medium mb-2 text-fg-muted">Password</label>
           <input 
             id="password" 
             type="password" 
@@ -103,7 +100,7 @@ export default function Register() {
             placeholder="••••••••"
             minLength={6}
           />
-          <p className="text-xs text-fg-muted mt-2">{t('password_min_chars', { ns: 'auth' })}</p>
+          <p className="text-xs text-fg-muted mt-2">Password must be at least 6 characters.</p>
         </div>
         
         <button 

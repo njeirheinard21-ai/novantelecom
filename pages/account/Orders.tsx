@@ -1,13 +1,10 @@
-import { useTranslation } from 'react-i18next';
-import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { getCustomerOrders } from '../../lib/api/orders';
 import { formatPrice } from '../../lib/money';
 import { Package } from 'lucide-react';
 
 export default function Orders() {
-  const { t } = useTranslation(['account', 'common']);
-
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +28,7 @@ export default function Orders() {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl font-semibold tracking-tight">{t('order_history', { ns: 'account' })}</h2>
+      <h2 className="text-2xl font-semibold tracking-tight">Order History</h2>
 
       {loading ? (
         <div className="space-y-4">
@@ -49,8 +46,8 @@ export default function Orders() {
       ) : orders.length === 0 ? (
         <div className="text-center py-20 border border-dashed border-border/50 rounded-[2rem] bg-canvas">
           <Package className="w-12 h-12 text-border mx-auto mb-4" />
-          <p className="text-fg-muted font-medium mb-2">{t('no_orders_yet', { ns: 'account' })}</p>
-          <p className="text-sm text-fg-muted mb-8">{t('next_apple_experience', { ns: 'account' })}</p>
+          <p className="text-fg-muted font-medium mb-2">No orders yet.</p>
+          <p className="text-sm text-fg-muted mb-8">Your next great Apple experience is waiting.</p>
           <Link to="/" className="inline-flex items-center justify-center rounded-full bg-accent text-white px-8 py-3 text-sm font-medium hover:bg-accent/90 transition-colors">
             Explore Products
           </Link>

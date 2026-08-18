@@ -1,9 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { auth } from '../../lib/auth';
 
 export default function Inventory() {
-  const { t } = useTranslation(['common']);
   const [data, setData] = useState<{ products: any[], ledger: any[] }>({ products: [], ledger: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -102,7 +100,7 @@ export default function Inventory() {
           <h2 className="text-lg font-semibold tracking-tight mb-6">Adjust Stock</h2>
           <form onSubmit={handleAdjust} className="space-y-5">
             <div>
-              <div className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">{t('product', { ns: 'common' })}</div>
+              <label className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Product</label>
               <select 
                 className="block w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 text-sm font-medium outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all appearance-none"
                 value={adjustForm.productId}
@@ -117,7 +115,7 @@ export default function Inventory() {
             
             {selectedProduct?.variants?.length > 0 && (
               <div>
-                <div className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Variant</div>
+                <label className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Variant</label>
                 <select 
                   className="block w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 text-sm font-medium outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all appearance-none"
                   value={adjustForm.variantId}
@@ -139,7 +137,7 @@ export default function Inventory() {
             )}
 
             <div>
-              <div className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Adjustment</div>
+              <label className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Adjustment</label>
               <input 
                 type="number"
                 required
@@ -151,7 +149,7 @@ export default function Inventory() {
             </div>
 
             <div>
-              <div className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Reason Code</div>
+              <label className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Reason Code</label>
               <select 
                 className="block w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 text-sm font-medium outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all appearance-none"
                 value={adjustForm.reason}
@@ -165,7 +163,7 @@ export default function Inventory() {
             </div>
 
             <div>
-              <div className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Notes <span className="opacity-50">(Optional)</span></div>
+              <label className="block text-xs font-semibold text-fg-muted uppercase tracking-wider mb-2">Notes <span className="opacity-50">(Optional)</span></label>
               <input 
                 type="text"
                 placeholder="Add details..."
@@ -191,8 +189,8 @@ export default function Inventory() {
                 <table className="w-full text-left text-sm border-collapse">
                   <thead>
                     <tr className="bg-canvas-secondary/50 border-b border-border/40">
-                      <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">{t('date', { ns: 'common' })}</th>
-                      <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">{t('product', { ns: 'common' })}</th>
+                      <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Date</th>
+                      <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Product</th>
                       <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Adjustment</th>
                       <th className="p-5 font-semibold text-fg-muted text-xs uppercase tracking-wider">Reason</th>
                     </tr>

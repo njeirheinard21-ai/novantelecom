@@ -1,9 +1,7 @@
-import { useTranslation } from 'react-i18next';
-import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
+import { Link } from 'react-router';
 import { MessageCircle, FileText, Package, Wrench } from 'lucide-react';
 
 export default function Support() {
-  const { t } = useTranslation(['common']);
   const supportTopics = [
     { icon: Package, title: 'Orders & Delivery', desc: 'Track, return, or cancel an order', link: '/account/orders' },
     { icon: Wrench, title: 'Repairs & Warranty', desc: 'Check coverage or start a repair', link: '/repairs' },
@@ -13,7 +11,7 @@ export default function Support() {
 
   return (
     <div className="space-y-8 max-w-4xl">
-      <h2 className="text-2xl font-semibold tracking-tight">{t('support', { ns: 'common' })}</h2>
+      <h2 className="text-2xl font-semibold tracking-tight">Support</h2>
 
       <div className="bg-canvas border border-border/50 rounded-[2rem] p-6 sm:p-10 shadow-sm text-center">
         <h3 className="text-xl font-semibold mb-2">Need help?</h3>
