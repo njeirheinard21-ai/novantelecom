@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "alex-apple-store",
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "alex-apple-store.firebasestorage.app",
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "651429361543",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:651429361543:web:54e81e41aaeb8f08334522"
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:651429361543:web:7895dd14d71e1f2e334522"
 };
 
 export const app = initializeApp(firebaseConfig);

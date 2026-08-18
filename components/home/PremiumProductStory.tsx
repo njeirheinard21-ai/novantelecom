@@ -1,5 +1,4 @@
-import { OptimizedImage } from '../ui/OptimizedImage';
-import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
+import { Link } from 'react-router';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
 
@@ -11,7 +10,7 @@ export function PremiumProductStory() {
           
           <div className="order-2 lg:order-1 flex items-center justify-center w-full">
              <div className="w-full aspect-square md:aspect-[4/5] flex items-center justify-center rounded-[2.5rem] overflow-hidden shadow-2xl bg-black border border-white/15">
-               <img src="https://firebasestorage.googleapis.com/v0/b/jo-accessories-44ffa.firebasestorage.app/o/ChatGPT%20Image%20Aug%2010%2C%202026%2C%2012_54_18%20PM.png?alt=media&token=e98f87d1-3bdd-4e51-b5bf-8c9213003ad7" alt="Apple Vision Pro" className="w-full h-full object-cover object-center" referrerPolicy="no-referrer" />
+               <img src="https://firebasestorage.googleapis.com/v0/b/jo-accessories-44ffa.firebasestorage.app/o/ChatGPT%20Image%20Aug%2010%2C%202026%2C%2010_57_37%20AM.png?alt=media&token=cdda3555-003b-46fb-973d-fd2a34b4fd4e" alt="Apple Vision Pro" className="w-full h-full object-cover object-center" referrerPolicy="no-referrer" />
              </div>
           </div>
           

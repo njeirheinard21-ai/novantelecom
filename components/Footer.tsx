@@ -1,41 +1,35 @@
-import { useTranslation } from 'react-i18next';
-import { LocalizedLink as Link } from '../components/ui/LocalizedLink';
+import { Link } from 'react-router';
 
-
+const FOOTER_LINKS = {
+  'Acheter et découvrir': [
+    { name: 'Mac', href: '/category/mac' },
+    { name: 'iPhone', href: '/category/iphone' },
+    { name: 'iPad', href: '/category/ipad' },
+    { name: 'Apple Watch', href: '/category/watch' },
+    { name: 'AirPods', href: '/category/airpods' },
+    { name: 'Accessories', href: '/category/accessories' },
+  ],
+  'Compte': [
+    { name: 'Gérer votre compte Apple', href: '/account' },
+    { name: 'Compte Nova Telecom', href: '/account' },
+  ],
+  'À propos': [
+    { name: 'Support', href: '/support' },
+    { name: 'Services', href: '/services' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Contacter Nova Telecom', href: '/contact' },
+  ]
+};
 
 export function Footer() {
-  const { t } = useTranslation();
-
-  const FOOTER_LINKS = {
-    [t('shop_and_learn')]: [
-      { name: 'Mac', href: '/category/mac' },
-      { name: 'iPhone', href: '/category/iphone' },
-      { name: 'iPad', href: '/category/ipad' },
-      { name: 'Apple Watch', href: '/category/watch' },
-      { name: 'AirPods', href: '/category/airpods' },
-      { name: t('accessories'), href: '/category/accessories' },
-    ],
-    [t('account')]: [
-      { name: t('manage_apple_account'), href: '/account' },
-      { name: t('nova_account'), href: '/account' },
-    ],
-    [t('about')]: [
-      { name: t('support'), href: '/support' },
-      { name: t('services'), href: '/services' },
-      { name: t('faq'), href: '/faq' },
-      { name: t('contact_nova'), href: '/contact' },
-    ]
-  };
-
-
   return (
     <footer className="bg-canvas-secondary pt-12 pb-8 text-xs text-fg-muted border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Footnotes / Trust elements */}
         <div className="pb-8 border-b border-border">
-          <p className="mb-2">{t('footer_note_1')}</p>
-          <p>{t('footer_note_2')}</p>
+          <p className="mb-2">1. Les valeurs de reprise varient selon l'état, l'année et la configuration de votre appareil éligible.</p>
+          <p>2. Les mensualités sont disponibles lors du choix d'une offre de financement éligible.</p>
         </div>
 
         {/* Links Grid */}
@@ -58,15 +52,15 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-border">
-          <p>&copy; {new Date().getFullYear()} Nova Telecom. {t('all_rights_reserved')}</p>
+          <p>&copy; {new Date().getFullYear()} Nova Telecom. Tous droits réservés.</p>
           <div className="flex space-x-4">
-            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">{t('privacy_policy')}</Link>
+            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">Politique de confidentialité</Link>
             <span className="hidden md:inline border-l border-border h-3" />
-            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">{t('terms_of_use')}</Link>
+            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">Conditions d'utilisation</Link>
             <span className="hidden md:inline border-l border-border h-3" />
-            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">{t('sales_policy')}</Link>
+            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">Politique de vente</Link>
             <span className="hidden md:inline border-l border-border h-3" />
-            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">{t('legal_info')}</Link>
+            <Link to="/legal" className="hover:text-fg hover:underline transition-colors">Mentions légales</Link>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export const fixtureSettingsRepository: SettingsRepository = {
     return {
       storeName: 'Nova Telecom',
       currency: 'XAF',
-      contactEmail: 'info@novatelecom.cm',
+      contactEmail: 'contact@novatelecom.com',
       contactPhone: '+237 600000000',
     } as unknown as StoreSettings;
   }

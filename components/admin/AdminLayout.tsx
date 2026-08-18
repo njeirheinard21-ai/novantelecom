@@ -1,14 +1,15 @@
-import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
-import { useLocation, Outlet } from 'react-router';
+import { Link, useLocation, Outlet } from 'react-router';
 import { Container } from '../ui/Container';
 import { useAuthStore } from '../../store/authStore';
 import { hasPermission } from '../../lib/permissions';
-import LayoutDashboard from 'lucide-react/dist/esm/icons/layout-dashboard';
-import ShoppingBag from 'lucide-react/dist/esm/icons/shopping-bag';
-import PackageSearch from 'lucide-react/dist/esm/icons/package-search';
-import Users from 'lucide-react/dist/esm/icons/users';
-import Settings from 'lucide-react/dist/esm/icons/settings';
-import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check';
+import { 
+  LayoutDashboard, 
+  ShoppingBag, 
+  PackageSearch, 
+  Users, 
+  Settings, 
+  ShieldCheck 
+} from 'lucide-react';
 
 export function AdminLayout() {
   const location = useLocation();

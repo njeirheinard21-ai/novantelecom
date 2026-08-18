@@ -3,7 +3,6 @@ import { Suspense, lazy } from 'react';
 import { Loading } from './Loading';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { useCartStore } from '../store/cartStore';
 const CartDrawer = lazy(() => import('./storefront/CartDrawer').then(m => ({ default: m.CartDrawer })));
 
 export function RootLayout() {
@@ -18,7 +17,7 @@ export function RootLayout() {
       </main>
 
       <Footer />
-      {useCartStore(state => state.isOpen) && <Suspense fallback={null}><CartDrawer /></Suspense>}
+      <Suspense fallback={null}><CartDrawer /></Suspense>
     </div>
   );
 }
