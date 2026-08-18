@@ -1,0 +1,220 @@
+
+> react-example@0.0.0 lint
+> eslint . && tsc --noEmit
+
+
+/app/applet/src/components/storefront/CartDrawer.tsx
+  14:10  warning  'isSubmitting' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  14:24  warning  'setIsSubmitting' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  15:10  warning  'checkoutError' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  15:25  warning  'setCheckoutError' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  40:16  warning  'error' is defined but never used                      @typescript-eslint/no-unused-vars
+
+/app/applet/src/data/firestore/categoryRepository.ts
+  4:45  warning  'getDoc' is defined but never used  @typescript-eslint/no-unused-vars
+  4:53  warning  'doc' is defined but never used     @typescript-eslint/no-unused-vars
+
+/app/applet/src/data/firestore/productRepository.ts
+   15:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  181:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/data/firestore/userRepository.ts
+  11:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  27:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  44:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/data/firestore/utils.ts
+  20:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/data/fixtures/categoryRepository.ts
+  2:10  warning  'Category' is defined but never used  @typescript-eslint/no-unused-vars
+
+/app/applet/src/data/fixtures/productRepository.test.ts
+  1:32  warning  'beforeEach' is defined but never used  @typescript-eslint/no-unused-vars
+
+/app/applet/src/lib/api/orders.ts
+  11:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/Checkout.tsx
+   10:18  warning  'setItems' is assigned a value but never used   @typescript-eslint/no-unused-vars
+   54:19  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   83:11  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+   87:11  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+   91:11  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+   96:13  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  100:13  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  105:11  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+
+/app/applet/src/pages/Product.tsx
+  1:21  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+/app/applet/src/pages/admin/Customers.tsx
+  2:10  warning  'auth' is defined but never used                   @typescript-eslint/no-unused-vars
+  5:21  warning  'setCustomers' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  5:46  warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/admin/Dashboard.tsx
+   7:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/admin/Inventory.tsx
+    5:48  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+    5:63  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   26:17  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   57:17  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   68:35  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   68:64  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   97:15  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  112:17  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  120:52  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  134:15  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  145:15  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  159:15  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+
+/app/applet/src/pages/admin/Settings.tsx
+   39:19  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   64:17  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  106:19  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  116:19  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  136:17  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  145:17  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  157:15  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+
+/app/applet/src/pages/admin/Staff.tsx
+   5:38  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  20:17  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  47:17  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  63:17  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  80:13  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  91:13  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+
+/app/applet/src/pages/admin/orders/AdminOrderDetail.tsx
+   13:38  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   26:19  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   44:19  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+   82:15  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  108:39  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/admin/orders/AdminOrderList.tsx
+   7:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/admin/products/ProductForm.tsx
+  51:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/auth/Login.tsx
+  21:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/auth/Register.tsx
+  21:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/auth/ResetPassword.tsx
+  18:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/orders/OrderDetail.tsx
+  10:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  25:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  68:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/orders/OrderList.tsx
+   8:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/src/pages/orders/OrderTracking.tsx
+  12:38  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  22:19  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  41:13  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  45:13  error    A form label must be associated with a control  jsx-a11y/label-has-associated-control
+  67:39  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+/app/applet/src/server/middleware/auth.ts
+   5:10  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  20:12  warning  'error' is defined but never used         @typescript-eslint/no-unused-vars
+
+/app/applet/src/server/routes/admin.ts
+    8:27  error    The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type  @typescript-eslint/no-unsafe-function-type
+    8:46  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+    8:56  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+    8:67  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   11:23  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   23:51  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   23:61  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   27:79  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   78:50  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   78:60  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   86:51  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   86:61  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   99:47  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   99:57  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  108:48  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  108:58  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  128:15  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  137:55  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  137:65  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  155:51  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  155:61  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  166:59  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  166:69  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  176:9   error    The value assigned to 'currentStock' is not used in subsequent statements                                                no-useless-assignment
+  177:42  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  180:43  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  191:51  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+
+/app/applet/src/server/routes/orders.ts
+    7:10  warning  'DeliveryZone' is defined but never used                                                                                 @typescript-eslint/no-unused-vars
+   48:27  error    The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type  @typescript-eslint/no-unsafe-function-type
+   48:46  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   48:56  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   48:67  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   51:76  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   51:86  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  175:19  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  180:65  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  180:75  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  205:60  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  205:70  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  212:14  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  218:42  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  222:64  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  222:74  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  228:73  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  228:83  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  239:33  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  265:55  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  265:65  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  272:42  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  276:58  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  276:68  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  284:31  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+
+/app/applet/src/server/routes/payments.ts
+   17:27  error    The `Function` type accepts any function-like value.
+Prefer explicitly defining any function parameters and return type  @typescript-eslint/no-unsafe-function-type
+   17:46  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   17:56  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   17:67  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   20:79  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   20:89  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   42:40  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+   97:19  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  108:50  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  108:60  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  135:12  warning  'e' is defined but never used                                                                                            @typescript-eslint/no-unused-vars
+  161:44  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  171:40  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+  202:19  warning  Unexpected any. Specify a different type                                                                                 @typescript-eslint/no-explicit-any
+
+/app/applet/src/store/authStore.ts
+  5:9   warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  8:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/applet/test-permissions.ts
+   2:19  warning  'signInWithEmailAndPassword' is defined but never used  @typescript-eslint/no-unused-vars
+  31:15  warning  Unexpected any. Specify a different type                @typescript-eslint/no-explicit-any
+  40:15  warning  Unexpected any. Specify a different type                @typescript-eslint/no-explicit-any
+
+✖ 150 problems (25 errors, 125 warnings)
+
