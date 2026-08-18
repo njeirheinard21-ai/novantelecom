@@ -1,15 +1,14 @@
-import { Link, useLocation, Outlet } from 'react-router';
+import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
+import { useLocation, Outlet } from 'react-router';
 import { Container } from '../ui/Container';
 import { useAuthStore } from '../../store/authStore';
 import { hasPermission } from '../../lib/permissions';
-import { 
-  LayoutDashboard, 
-  ShoppingBag, 
-  PackageSearch, 
-  Users, 
-  Settings, 
-  ShieldCheck 
-} from 'lucide-react';
+import LayoutDashboard from 'lucide-react/dist/esm/icons/layout-dashboard';
+import ShoppingBag from 'lucide-react/dist/esm/icons/shopping-bag';
+import PackageSearch from 'lucide-react/dist/esm/icons/package-search';
+import Users from 'lucide-react/dist/esm/icons/users';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check';
 
 export function AdminLayout() {
   const location = useLocation();
@@ -28,7 +27,7 @@ export function AdminLayout() {
   const visibleLinks = links.filter(link => hasPermission(role, link.permission));
 
   return (
-    <div className="min-h-screen bg-canvas">
+    <div className="min-h-dvh bg-canvas">
       <Container className="py-12 max-w-[1400px]">
         <div className="flex flex-col lg:flex-row gap-10">
           

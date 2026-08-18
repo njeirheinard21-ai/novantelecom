@@ -1,9 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { formatPrice } from '../../lib/money';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { auth } from '../../lib/auth';
 
 export default function Dashboard() {
+  const { t } = useTranslation(['account']);
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -47,7 +49,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-10">
       <header>
-        <h1 className="text-3xl font-semibold tracking-tight text-fg">Overview</h1>
+        <h1 className="text-3xl font-semibold tracking-tight text-fg">{t('overview', { ns: 'account' })}</h1>
         <p className="text-fg-muted mt-2 text-sm">Monitor your store's performance and revenue.</p>
       </header>
 

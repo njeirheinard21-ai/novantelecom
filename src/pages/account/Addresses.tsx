@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import { db } from '../../lib/firebase';
@@ -5,6 +6,7 @@ import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from 'firebase
 import { MapPin, Plus, Trash2, Edit2, X } from 'lucide-react';
 
 export default function Addresses() {
+  const { t } = useTranslation(['checkout', 'common']);
   const user = useAuthStore(state => state.user);
   const [addresses, setAddresses] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -114,39 +116,37 @@ export default function Addresses() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2 text-fg-muted">Full Name</label>
+                <div className="block text-sm font-medium mb-2 text-fg-muted">{t('full_name', { ns: 'checkout' })}</div>
                 <input required type="text" value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} className="w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 outline-none focus:ring-2 focus:ring-accent" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-fg-muted">Phone Number</label>
+                <div className="block text-sm font-medium mb-2 text-fg-muted">{t('phone', { ns: 'checkout' })}</div>
                 <input required type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 outline-none focus:ring-2 focus:ring-accent" />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-2 text-fg-muted">Street Address</label>
+                <div className="block text-sm font-medium mb-2 text-fg-muted">{t('street_address', { ns: 'checkout' })}</div>
                 <input required type="text" value={formData.street} onChange={e => setFormData({...formData, street: e.target.value})} className="w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 outline-none focus:ring-2 focus:ring-accent" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-fg-muted">City</label>
+                <div className="block text-sm font-medium mb-2 text-fg-muted">{t('city', { ns: 'checkout' })}</div>
                 <select value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} className="w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 outline-none focus:ring-2 focus:ring-accent appearance-none">
                   {cities.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-fg-muted">Postal Code (Optional)</label>
+                <div className="block text-sm font-medium mb-2 text-fg-muted">Postal Code (Optional)</div>
                 <input type="text" value={formData.postalCode} onChange={e => setFormData({...formData, postalCode: e.target.value})} className="w-full rounded-xl border border-border/50 bg-canvas-secondary p-3 outline-none focus:ring-2 focus:ring-accent" />
               </div>
             </div>
-            <label className="flex items-center gap-3 cursor-pointer">
+            <div className="flex items-center gap-3 cursor-pointer">
               <input type="checkbox" checked={formData.isDefault} onChange={e => setFormData({...formData, isDefault: e.target.checked})} className="w-4 h-4 text-accent border-border rounded focus:ring-accent" />
               <span className="text-sm font-medium">Set as default address</span>
-            </label>
+            </div>
             <div className="pt-4 flex gap-4">
               <button type="submit" className="rounded-full bg-accent text-white px-8 py-3 text-sm font-medium hover:bg-accent/90 transition-colors">
                 Save Address
               </button>
-              <button type="button" onClick={() => { setShowForm(false); setEditingId(null); }} className="rounded-full bg-transparent border border-border/50 text-fg px-8 py-3 text-sm font-medium hover:bg-canvas-secondary transition-colors">
-                Cancel
-              </button>
+              <button type="button" onClick={() => { setShowForm(false); setEditingId(null); }} className="rounded-full bg-transparent border border-border/50 text-fg px-8 py-3 text-sm font-medium hover:bg-canvas-secondary transition-colors">{t('cancel', { ns: 'common' })}</button>
             </div>
           </form>
         </div>
@@ -182,11 +182,9 @@ export default function Addresses() {
               </div>
               <div className="flex gap-4 border-t border-border/50 pt-4">
                 <button onClick={() => handleEdit(address)} className="text-sm font-medium text-fg hover:text-accent flex items-center">
-                  <Edit2 className="w-4 h-4 mr-1.5" /> Edit
-                </button>
+                  <Edit2 className="w-4 h-4 mr-1.5" />{t('edit', { ns: 'common' })}</button>
                 <button onClick={() => handleDelete(address.id)} className="text-sm font-medium text-red-500 hover:text-red-600 flex items-center">
-                  <Trash2 className="w-4 h-4 mr-1.5" /> Delete
-                </button>
+                  <Trash2 className="w-4 h-4 mr-1.5" />{t('delete', { ns: 'common' })}</button>
               </div>
             </div>
           ))}

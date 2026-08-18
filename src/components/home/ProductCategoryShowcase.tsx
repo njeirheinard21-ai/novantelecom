@@ -1,4 +1,5 @@
-import { Link } from 'react-router';
+import { OptimizedImage } from '../ui/OptimizedImage';
+import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { Container } from '../ui/Container';
 
 const CATEGORIES = [
@@ -33,7 +34,12 @@ export function ProductCategoryShowcase() {
                     referrerPolicy="no-referrer" 
                   />
                 ) : (
-                  <span className="text-fg-muted text-sm">{category.image}</span>
+                  <OptimizedImage 
+                    baseName={category.image} 
+                    alt={category.name} 
+                    className={['ipad', 'watch'].includes(category.id) ? 'w-[75%] h-[75%] object-contain' : 'w-full h-full object-cover'} 
+                    referrerPolicy="no-referrer" 
+                  />
                 )}
               </div>
               <h3 className="text-xl font-medium tracking-tight group-hover:text-accent transition-colors">{category.name}</h3>

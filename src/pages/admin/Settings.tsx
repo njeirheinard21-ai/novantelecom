@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { auth } from '../../lib/auth';
 import { useAuthStore } from '../../store/authStore';
@@ -5,6 +6,7 @@ import { hasPermission } from '../../lib/permissions';
 import { formatPrice } from '../../lib/money';
 
 export default function Settings() {
+  const { t } = useTranslation(['checkout', 'common']);
   const role = useAuthStore(state => state.role);
   const canManageTax = hasPermission(role, 'settings:tax');
   const [loading, setLoading] = useState(true);
@@ -68,7 +70,7 @@ export default function Settings() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>{t('loading', { ns: 'common' })}</div>;
 
   const sampleSubtotal = 10000;
   const shippingCost = sampleSubtotal >= form.freeDeliveryThreshold && form.freeDeliveryThreshold > 0 
@@ -96,14 +98,14 @@ export default function Settings() {
                 onChange={e => setForm({...form, vatEnabled: e.target.checked})}
                 className="w-5 h-5"
               />
-              <label htmlFor="vatEnabled" className="font-medium">Enable Tax Calculation</label>
+              <div data-for="vatEnabled" className="font-medium">Enable Tax Calculation</div>
               {!canManageTax && <span className="text-xs text-fg-muted">(Requires super_admin)</span>}
             </div>
 
             {form.vatEnabled && (
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Tax Label</label>
+                  <div data-for="taxLabel" className="block text-sm font-medium text-gray-700">Tax Label</div>
                   <input 
                     type="text" 
                     value={form.taxLabel}
@@ -113,7 +115,7 @@ export default function Settings() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Tax Rate (Decimal e.g., 0.2 for 20%)</label>
+                  <div data-for="taxRatePercent" className="block text-sm font-medium text-gray-700">Tax Rate (Decimal e.g., 0.2 for 20%)</div>
                   <input 
                     type="number" 
                     step="0.01"
@@ -130,10 +132,10 @@ export default function Settings() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-lg font-semibold border-b pb-2">Shipping</h2>
+            <h2 className="text-lg font-semibold border-b pb-2">{t('shipping', { ns: 'checkout' })}</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Flat Shipping Rate</label>
+                <div data-for="shippingFlatRate" className="block text-sm font-medium text-gray-700">Flat Shipping Rate</div>
                 <input 
                   type="number" 
                   value={form.flatShippingRate}
@@ -142,7 +144,7 @@ export default function Settings() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Free Delivery Threshold</label>
+                <div data-for="freeShippingThreshold" className="block text-sm font-medium text-gray-700">Free Delivery Threshold</div>
                 <input 
                   type="number" 
                   value={form.freeDeliveryThreshold}
@@ -154,7 +156,7 @@ export default function Settings() {
             </div>
             
             <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Per-Zone Delivery Fees</label>
+              <div className="block text-sm font-medium text-gray-700 mb-2">Per-Zone Delivery Fees</div>
               {form.zones.map((zone, idx) => (
                 <div key={idx} className="flex gap-2 mb-2">
                   <input 
