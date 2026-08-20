@@ -1,1 +1,1 @@
-export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://einortsolutions.com';
+export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://novantelecom.cm';

@@ -1,5 +1,5 @@
 export default {
-  "hero_title": "Nova Telecom",
+  "hero_title": "Novan Telecom",
   "hero_subtitle": "Votre connexion vers le futur",
   "shop_now": "Acheter",
   "learn_more": "En savoir plus",

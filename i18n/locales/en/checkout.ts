@@ -12,5 +12,9 @@ export default {
   "postal_code": "Postal Code",
   "country": "Country"
 ,
-  "continue_shopping": "Continue Shopping"
+  "continue_shopping": "Continue Shopping",
+  "free": "Free",
+  "processing": "Processing...",
+  "place_order": "Place Order",
+  "total": "Total"
 };

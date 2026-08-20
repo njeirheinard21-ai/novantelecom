@@ -22,6 +22,7 @@ export interface ProductFilters {
   sort?: 'newest' | 'price_asc' | 'price_desc' | 'name';
   limit?: number;
   cursor?: string;
+  includeCount?: boolean;
 }
 
 export interface ProductRepository {

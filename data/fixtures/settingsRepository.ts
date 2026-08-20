@@ -8,9 +8,9 @@ export const fixtureSettingsRepository: SettingsRepository = {
   async get() {
     await delay(150);
     return {
-      storeName: 'Nova Telecom',
+      storeName: 'Novan Telecom',
       currency: 'XAF',
-      contactEmail: 'contact@novatelecom.com',
+      contactEmail: 'info@novantelecom.cm',
       contactPhone: '+237 600000000',
     } as unknown as StoreSettings;
   }

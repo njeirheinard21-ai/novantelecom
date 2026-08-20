@@ -29,9 +29,9 @@ export default {
 ,
   "manage_apple_account": "Manage your Apple Account"
 ,
-  "nova_account": "Nova Telecom Account"
+  "nova_account": "Novan Telecom Account"
 ,
-  "contact_nova": "Contact Nova Telecom"
+  "contact_nova": "Contact Novan Telecom"
 ,
   "footer_note_1": "1. Trade-in values will vary based on the condition, year, and configuration of your eligible trade-in device."
 ,
@@ -89,7 +89,7 @@ export default {
 ,
   "cart_empty": "Your cart is empty."
 ,
-  "welcome_to": "Welcome to our {{page}} page. Nova Telecom is dedicated to providing the best experience."
+  "welcome_to": "Welcome to our {{page}} page. Novan Telecom is dedicated to providing the best experience."
 ,
   "more_info_contact": "For more information, please contact our support team or visit our store."
 ,

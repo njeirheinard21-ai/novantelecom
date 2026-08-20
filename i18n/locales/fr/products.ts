@@ -10,5 +10,9 @@ export default {
   "specifications": "Caractéristiques",
   "reviews": "Avis",
   "models": "Modèles",
-  "buy_now": "Acheter maintenant"
+  "buy_now": "Acheter maintenant",
+  "all_models": "Tous les modèles.",
+  "all_lines": "Toutes les lignes",
+  "all_generations": "Toutes les générations",
+  "select_variant_error": "Veuillez sélectionner un modèle avant d'ajouter au panier."
 };

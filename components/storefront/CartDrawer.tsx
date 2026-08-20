@@ -1,3 +1,6 @@
+import { useTranslation } from 'react-i18next';
+import { getLocalizedValue } from '../../types/i18n';
+import { useLocalizedNavigate as useNavigate } from '../../hooks/useLocalizedNavigate';
 import { useEffect, useState } from 'react';
 import { useCartStore, selectTotalItems, selectSubtotal } from '../../store/cartStore';
 import { ProductVariant } from "../../types/product";
@@ -5,9 +8,9 @@ import { productRepository } from '../../data';
 import X from 'lucide-react/dist/esm/icons/x';
 import { Button } from '../ui/Button';
 import { formatPrice } from '../../lib/money';
-import { useNavigate } from 'react-router';
 
 export function CartDrawer() {
+  const { t, i18n } = useTranslation();
   const { isOpen, setIsOpen, items, updateQuantity, removeItem, priceWarning, setPriceWarning, setItems } = useCartStore();
   const totalItems = useCartStore(selectTotalItems);
   const subtotal = useCartStore(selectSubtotal);
@@ -87,14 +90,14 @@ export function CartDrawer() {
         <div className="flex-1 overflow-y-auto p-4" aria-live="polite">
           {priceWarning && (
             <div className="bg-yellow-100 p-4 rounded-2xl mb-4 text-sm text-yellow-800">
-              <p className="font-semibold mb-1">Le prix d'un article a changé.</p>
+              <p className="font-semibold mb-1">{t('price_changed')}</p>
               <p>{priceWarning.productName} est passé de {formatPrice(priceWarning.oldPrice)} à {formatPrice(priceWarning.newPrice)}.</p>
-              <Button onClick={acceptNewPrices} className="mt-2 text-xs py-1" variant="outline">Accepter le nouveau prix</Button>
+              <Button onClick={acceptNewPrices} className="mt-2 text-xs py-1" variant="outline">{t('accept_new_price')}</Button>
             </div>
           )}
 
           {items.length === 0 ? (
-            <p className="text-gray-500 text-center mt-10">Votre panier est vide.</p>
+            <p className="text-gray-500 text-center mt-10">{t('cart_empty')}</p>
           ) : (
             <ul className="space-y-6">
               {items.map((item) => (
@@ -103,7 +106,7 @@ export function CartDrawer() {
                     {item.product.images && item.product.images[0] ? (
                       <img 
                         src={item.product.images[0]} 
-                        alt={item.product.name}
+                        alt={getLocalizedValue(item.product.name as any, i18n?.language || 'en')}
                         loading="lazy"
                         className="w-full h-full object-cover"
                       />
@@ -113,7 +116,7 @@ export function CartDrawer() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-medium text-fg">
-                      {item.product.name}
+                      {getLocalizedValue(item.product.name as any, i18n?.language || 'en')}
                       {item.variantId && item.product.variants?.find((v: ProductVariant) => v.id === item.variantId) && (
                         <span className="text-gray-500 text-sm ml-2">
                           ({item.product.variants.find((v: ProductVariant) => v.id === item.variantId)?.storage} {item.product.variants.find((v: ProductVariant) => v.id === item.variantId)?.color})

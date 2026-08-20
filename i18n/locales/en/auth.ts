@@ -15,9 +15,9 @@ export default {
 ,
   "reset_password": "Reset Password"
 ,
-  "enter_apple_id_reset": "Enter your Apple ID to reset your password."
+  "enter_apple_id_reset": "Enter your email to reset your password."
 ,
-  "apple_id": "Apple ID"
+  "apple_id": "Email"
 ,
   "return_to_sign_in": "Return to Sign In"
 };

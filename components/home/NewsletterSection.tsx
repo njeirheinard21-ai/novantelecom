@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
 
 export function NewsletterSection() {
+  const { t } = useTranslation(['auth']);
   return (
     <section className="py-24 bg-canvas border-t border-border">
       <Container>
@@ -10,7 +12,7 @@ export function NewsletterSection() {
             Restez informé.
           </h2>
           <p className="text-lg text-fg-muted mb-8">
-            S'inscrire for the latest news, offers, and product announcements from Nova Telecom.
+            S'inscrire for the latest news, offers, and product announcements from Novan Telecom.
           </p>
           
           <form 
@@ -30,9 +32,7 @@ export function NewsletterSection() {
               />
             </div>
             <div className="mt-3 sm:mt-0 sm:flex-shrink-0">
-              <Button type="submit" size="lg" className="w-full">
-                Sign Up
-              </Button>
+              <Button type="submit" size="lg" className="w-full">{t('sign_up', { ns: 'auth' })}</Button>
             </div>
           </form>
           

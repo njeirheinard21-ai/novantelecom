@@ -1,4 +1,6 @@
-import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { OptimizedImage } from '../ui/OptimizedImage';
+import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { Container } from '../ui/Container';
 
 const ACCESSORIES = [
@@ -9,12 +11,14 @@ const ACCESSORIES = [
 ];
 
 export function AccessoriesSection() {
+  const { t } = useTranslation(['home', 'common']);
+
   return (
     <section className="py-16 md:py-24 bg-canvas border-t border-border">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            Accessories. <span className="text-fg-muted">Essentials that pair perfectly.</span>
+            {t('accessories_title', { ns: 'home' })} <span className="text-fg-muted">{t('accessories_subtitle', { ns: 'home' })}</span>
           </h2>
           <Link to="/category/accessories" className="text-accent hover:underline font-medium whitespace-nowrap">
             Shop all accessories {'>'}
@@ -26,7 +30,11 @@ export function AccessoriesSection() {
             <div key={index} className="group flex flex-col bg-canvas-secondary rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1">
               <div className="aspect-square bg-surface rounded-xl mb-6 flex items-center justify-center border border-border shadow-sm overflow-hidden">
                 {item.image ? (
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  item.image.startsWith('http') ? (
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  ) : (
+                    <OptimizedImage baseName={item.image} alt={item.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                  )
                 ) : (
                   <span className="text-fg-muted text-sm text-center px-4">[{item.name} Image]</span>
                 )}

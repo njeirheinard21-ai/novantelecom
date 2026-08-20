@@ -29,9 +29,9 @@ export default {
 ,
   "manage_apple_account": "Gérer votre compte Apple"
 ,
-  "nova_account": "Compte Nova Telecom"
+  "nova_account": "Compte Novan Telecom"
 ,
-  "contact_nova": "Contacter Nova Telecom"
+  "contact_nova": "Contacter Novan Telecom"
 ,
   "footer_note_1": "1. Les valeurs de reprise varient selon l'état, l'année et la configuration de votre appareil éligible."
 ,
@@ -89,7 +89,7 @@ export default {
 ,
   "cart_empty": "Votre panier est vide."
 ,
-  "welcome_to": "Bienvenue sur notre page {{page}}. Nova Telecom s'engage à offrir la meilleure expérience."
+  "welcome_to": "Bienvenue sur notre page {{page}}. Novan Telecom s'engage à offrir la meilleure expérience."
 ,
   "more_info_contact": "Pour plus d'informations, veuillez contacter notre équipe d'assistance ou visiter notre boutique."
 ,
