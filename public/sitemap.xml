@@ -2,177 +2,177 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://novantelecom.cm/</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/search</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/search</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/wishlist</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/wishlist</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/category/mac</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/category/mac</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/category/iphone</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/category/iphone</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/category/ipad</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/category/ipad</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/category/watch</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/category/watch</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/category/airpods</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/category/airpods</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/faq</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/faq</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/contact</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/contact</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/warranty</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/warranty</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/services</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/services</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/support</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/support</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/trade-in</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/trade-in</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/repairs</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/repairs</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/financing</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/financing</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/en/legal</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/en/legal</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/search</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/search</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/wishlist</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/wishlist</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/category/mac</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/category/mac</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/category/iphone</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/category/iphone</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/category/ipad</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/category/ipad</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/category/watch</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/category/watch</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/category/airpods</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/category/airpods</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/faq</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/faq</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/contact</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/contact</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/warranty</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/warranty</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/services</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/services</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/support</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/support</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/trade-in</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/trade-in</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/repairs</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/repairs</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/financing</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/financing</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://novantelecom.cm/fr/legal</loc>
+    <loc>https://accounts.google.com/o/oauth2/auth/fr/legal</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
