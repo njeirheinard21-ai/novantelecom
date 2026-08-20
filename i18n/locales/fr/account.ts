@@ -6,7 +6,7 @@ export default {
 ,
   "no_orders_yet": "Aucune commande pour le moment."
 ,
-  "next_apple_experience": "Votre prochaine grande expérience Novan Telecom vous attend."
+  "next_apple_experience": "Votre prochaine grande expérience Apple vous attend."
 ,
   "security": "Sécurité"
 ,

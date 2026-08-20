@@ -10,9 +10,5 @@ export default {
   "specifications": "Specifications",
   "reviews": "Reviews",
   "models": "Models",
-  "buy_now": "Buy Now",
-  "all_models": "All models.",
-  "all_lines": "All lines",
-  "all_generations": "All generations",
-  "select_variant_error": "Please select a variant before adding to cart."
+  "buy_now": "Buy Now"
 };

@@ -48,7 +48,6 @@ export function Header() {
 
             {/* Logo */}
             <Link to="/" className="hover:opacity-80 transition-opacity flex items-center">
-              {/* TODO: Logo is hotlinked from an unrelated third-party bucket (jo-accessories-44ffa). Upload to own storage/CDN and update this src. */}
               <img src="https://firebasestorage.googleapis.com/v0/b/jo-accessories-44ffa.firebasestorage.app/o/Einort%2FChatGPT%20Image%20Aug%2013%2C%202026%2C%2003_13_57%20PM.png?alt=media&token=90237423-74ca-4647-ad32-18a89c0d7e64" alt="Novan Telecom Logo" className="h-[46px] md:h-[54px] w-auto object-contain" referrerPolicy="no-referrer" />
             </Link>
 

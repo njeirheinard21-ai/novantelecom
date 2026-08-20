@@ -15,9 +15,9 @@ export default {
 ,
   "reset_password": "Réinitialiser le mot de passe"
 ,
-  "enter_apple_id_reset": "Saisissez votre adresse e-mail pour réinitialiser votre mot de passe."
+  "enter_apple_id_reset": "Saisissez votre identifiant Apple pour réinitialiser votre mot de passe."
 ,
-  "apple_id": "Adresse e-mail"
+  "apple_id": "Identifiant Apple"
 ,
   "return_to_sign_in": "Retour à la connexion"
 };
