@@ -1,6 +1,6 @@
 {
-  "name": "Nova Telecom",
-  "description": "E-commerce platform for Nova Telecom",
+  "name": "Novan Telecom",
+  "description": "E-commerce platform for Novan Telecom",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -2,18 +2,38 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+import { siteConfig } from './src/config/site';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(), 
+      tailwindcss(),
+      {
+        name: 'html-transform',
+        transformIndexHtml(html) {
+          return html
+            .replace(/%SITE_NAME%/g, siteConfig.name)
+            .replace(/%SITE_EMAIL%/g, siteConfig.contact.email)
+            .replace(/%SITE_PHONE%/g, siteConfig.contact.phone)
+            .replace(/%SITE_WHATSAPP_URL%/g, siteConfig.contact.whatsapp);
+        }
+      }
+    ],
     build: {
       target: ['es2020', 'safari15.4', 'chrome87', 'firefox78', 'edge88'],
       chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
-          manualChunks: {
-            firebase_core: ['firebase/app', 'firebase/auth'],
-            firebase_db: ['firebase/firestore'],
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('recharts') || id.includes('d3-')) return 'recharts_vendor';
+              if (id.includes('firebase')) return 'firebase_vendor';
+              if (id.includes('lucide-react')) return 'icons_vendor';
+              if (id.includes('i18next')) return 'i18n_vendor';
+              if (id.includes('react/') || id.includes('react-dom/') || id.includes('react-router')) return 'react_vendor';
+              return 'vendor';
+            }
           }
         }
       }
