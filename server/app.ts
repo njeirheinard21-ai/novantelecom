@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import paymentsRouter from './routes/payments';
 import ordersRouter from './routes/orders';
 import adminRouter from './routes/admin';
+import checkoutRouter from './routes/checkout';
+import storeRouter from './routes/store';
 
 const app = express();
 app.set('trust proxy', 1);
@@ -21,7 +23,9 @@ app.use(express.json());
 
 app.use('/api/payments', paymentsRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/checkout', checkoutRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/store', storeRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

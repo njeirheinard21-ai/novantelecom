@@ -1,4 +1,4 @@
-export type OrderStatus = 'pending' | 'payment_pending' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+export type OrderStatus = 'pending' | 'payment_pending' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded' | 'amount_mismatch';
 
 export interface OrderItem {
   productId: string;

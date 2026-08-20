@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { auth } from '../../lib/auth';
 
 export default function Staff() {
+  const { t } = useTranslation(['admin', 'auth', 'common']);
   const [staff, setStaff] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -65,7 +67,7 @@ export default function Staff() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>{t('loading', { ns: 'common' })}</div>;
 
   return (
     <div className="space-y-8">
@@ -77,7 +79,7 @@ export default function Staff() {
         <h2 className="text-lg font-semibold mb-4">Assign Role</h2>
         <form onSubmit={handleInvite} className="flex gap-4 items-end">
           <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">User Email</label>
+            <div data-for="userEmail" className="block text-sm font-medium text-gray-700 mb-1">User Email</div>
             <input 
               type="email" 
               required
@@ -88,7 +90,7 @@ export default function Staff() {
             />
           </div>
           <div className="w-48">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+            <div data-for="userRole" className="block text-sm font-medium text-gray-700 mb-1">{t('role', { ns: 'admin' })}</div>
             <select 
               value={role}
               onChange={e => setRole(e.target.value)}
@@ -111,8 +113,8 @@ export default function Staff() {
           <table className="w-full text-left">
             <thead className="bg-canvas-secondary border-b">
               <tr>
-                <th className="p-4 text-sm font-medium text-fg-muted">Email</th>
-                <th className="p-4 text-sm font-medium text-fg-muted">Role</th>
+                <th className="p-4 text-sm font-medium text-fg-muted">{t('email', { ns: 'auth' })}</th>
+                <th className="p-4 text-sm font-medium text-fg-muted">{t('role', { ns: 'admin' })}</th>
                 <th className="p-4 text-sm font-medium text-fg-muted">Actions</th>
               </tr>
             </thead>

@@ -2,6 +2,7 @@ export type Role = 'customer' | 'staff' | 'admin' | 'super_admin';
 
 export type Permission = 
   | 'products:read' | 'products:write'
+  | 'admin:products:read'
   | 'inventory:read' | 'inventory:adjust'
   | 'orders:read' | 'orders:update'
   | 'customers:read'
@@ -10,10 +11,11 @@ export type Permission =
 
 export const PERMISSIONS: Record<Permission, Role[]> = {
   'products:read': ['customer', 'staff', 'admin', 'super_admin'],
+  'admin:products:read': ['staff', 'admin', 'super_admin'],
   'products:write': ['admin', 'super_admin'],
   'inventory:read': ['staff', 'admin', 'super_admin'],
   'inventory:adjust': ['admin', 'super_admin'],
-  'orders:read': ['customer', 'staff', 'admin', 'super_admin'],
+  'orders:read': ['staff', 'admin', 'super_admin'],
   'orders:update': ['staff', 'admin', 'super_admin'],
   'customers:read': ['staff', 'admin', 'super_admin'],
   'users:read': ['staff', 'admin', 'super_admin'],

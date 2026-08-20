@@ -41,13 +41,11 @@ router.post('/initialize', requireAuth, initLimiter, asyncHandler(async (req: an
     const result = await adminDb.runTransaction(async (transaction) => {
       const orderRef = adminDb.collection('orders').doc(orderId);
       const orderDoc = await transaction.get(orderRef);
-
       if (!orderDoc.exists) {
         throw new Error('Order not found');
       }
 
       const order = orderDoc.data() as any;
-
       if (order.userId !== userId) {
         throw new Error('Forbidden');
       }
@@ -72,16 +70,19 @@ router.post('/initialize', requireAuth, initLimiter, asyncHandler(async (req: an
       }
 
       const paymentRef = adminDb.collection('payments').doc();
-      
-      const redirectUrl = `/checkout/wait?paymentId=${paymentRef.id}`;
-      
-      // Integrate actual payment provider if configured
+      let providerReference = null;
+      const paymentInstructions: any = null;
+
       if ((method === 'orange_money' || method === 'mtn_momo') && process.env.PAYMENT_API_KEY) {
-        // Integrate with mobile money provider API here
+        // Example isolation: call external API
+        // const response = await fetch('https://api.paymentprovider.com/v1/init', { ... });
+        // const data = await response.json();
+        // providerReference = data.reference;
+        // paymentInstructions = data.instructions;
+        providerReference = `mock_prov_${paymentRef.id}`;
+      } else {
+        providerReference = `simulated_${paymentRef.id}`;
       }
-      
-      const apiKey = process.env.PAYMENT_API_KEY;
-      if (!apiKey) console.warn("PAYMENT_API_KEY not set");
 
       transaction.set(paymentRef, {
         orderId,
@@ -90,6 +91,7 @@ router.post('/initialize', requireAuth, initLimiter, asyncHandler(async (req: an
         phone,
         amount,
         status: 'pending',
+        providerReference,
         createdAt: Date.now()
       });
 
@@ -104,7 +106,7 @@ router.post('/initialize', requireAuth, initLimiter, asyncHandler(async (req: an
         updatedAt: Date.now()
       });
 
-      return { redirectUrl: `/checkout/wait?paymentId=${paymentRef.id}`, status: 'payment_pending' };
+      return { redirectUrl: `/checkout/wait?paymentId=${paymentRef.id}`, status: 'payment_pending', paymentInstructions };
     });
 
     res.json(result);
@@ -167,6 +169,7 @@ router.post('/webhook', webhookLimiter, asyncHandler(async (req: any, res: any) 
     await adminDb.runTransaction(async (transaction) => {
       const paymentRef = adminDb.collection('payments').doc(paymentId);
       const paymentDoc = await transaction.get(paymentRef);
+
       if (!paymentDoc.exists) {
         console.error(`[${correlationId}] Payment not found: ${paymentId}`);
         return;
@@ -180,6 +183,7 @@ router.post('/webhook', webhookLimiter, asyncHandler(async (req: any, res: any) 
 
       const orderRef = adminDb.collection('orders').doc(payment.orderId);
       const orderDoc = await transaction.get(orderRef);
+
       if (!orderDoc.exists) return;
 
       const order = orderDoc.data() as any;
@@ -197,6 +201,7 @@ router.post('/webhook', webhookLimiter, asyncHandler(async (req: any, res: any) 
           updatedAt: Date.now(),
           note: `Webhook amount mismatch: expected ${payment.amount}, received ${amount}`
         });
+
         console.error(`[${correlationId}] Amount mismatch for payment ${paymentId}: expected ${payment.amount}, received ${amount}`);
         return;
       }

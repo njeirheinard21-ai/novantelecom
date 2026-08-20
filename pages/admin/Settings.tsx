@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { auth } from '../../lib/auth';
 import { useAuthStore } from '../../store/authStore';
@@ -5,18 +6,19 @@ import { hasPermission } from '../../lib/permissions';
 import { formatPrice } from '../../lib/money';
 
 export default function Settings() {
+  const { t } = useTranslation(['checkout', 'common']);
   const role = useAuthStore(state => state.role);
   const canManageTax = hasPermission(role, 'settings:tax');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
-    vatEnabled: false,
-    vatRate: 0,
+    taxEnabled: false,
+    taxRatePercent: 0,
     taxLabel: 'VAT',
-    flatShippingRate: 0,
-    freeDeliveryThreshold: 0,
-    zones: [] as { name: string, rate: number }[]
+    shippingFlatRate: 0,
+    freeShippingThreshold: 0,
+    deliveryZones: [] as { city: string; quarter: string; fee: number }[]
   });
   
   useEffect(() => {
@@ -29,12 +31,12 @@ export default function Settings() {
         const json = await res.json();
         if (!res.ok) throw new Error(json.error);
         setForm({
-          vatEnabled: json.vatEnabled || false,
-          vatRate: json.vatRate || 0,
+          taxEnabled: json.taxEnabled || false,
+          taxRatePercent: json.taxRatePercent || 0,
           taxLabel: json.taxLabel || 'VAT',
-          flatShippingRate: json.flatShippingRate || 0,
-          freeDeliveryThreshold: json.freeDeliveryThreshold || 0,
-          zones: json.zones || []
+          shippingFlatRate: json.shippingFlatRate || 0,
+          freeShippingThreshold: json.freeShippingThreshold || 0,
+          deliveryZones: json.deliveryZones || []
         });
       } catch (e: any) {
         setError(e.message);
@@ -68,13 +70,13 @@ export default function Settings() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>{t('loading', { ns: 'common' })}</div>;
 
   const sampleSubtotal = 10000;
-  const shippingCost = sampleSubtotal >= form.freeDeliveryThreshold && form.freeDeliveryThreshold > 0 
+  const shippingCost = sampleSubtotal >= form.freeShippingThreshold && form.freeShippingThreshold > 0 
     ? 0 
-    : form.flatShippingRate;
-  const taxCost = form.vatEnabled ? (sampleSubtotal * form.vatRate) : 0;
+    : form.shippingFlatRate;
+  const taxCost = form.taxEnabled ? (sampleSubtotal * (form.taxRatePercent / 100)) : 0;
   const sampleTotal = sampleSubtotal + shippingCost + taxCost;
 
   return (
@@ -90,20 +92,20 @@ export default function Settings() {
             <div className="flex items-center gap-3">
               <input 
                 type="checkbox" 
-                id="vatEnabled"
-                checked={form.vatEnabled}
+                id="taxEnabled"
+                checked={form.taxEnabled}
                 disabled={!canManageTax}
-                onChange={e => setForm({...form, vatEnabled: e.target.checked})}
+                onChange={e => setForm({...form, taxEnabled: e.target.checked})}
                 className="w-5 h-5"
               />
-              <label htmlFor="vatEnabled" className="font-medium">Enable Tax Calculation</label>
+              <div data-for="taxEnabled" className="font-medium">Enable Tax Calculation</div>
               {!canManageTax && <span className="text-xs text-fg-muted">(Requires super_admin)</span>}
             </div>
 
-            {form.vatEnabled && (
+            {form.taxEnabled && (
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Tax Label</label>
+                  <div data-for="taxLabel" className="block text-sm font-medium text-gray-700">Tax Label</div>
                   <input 
                     type="text" 
                     value={form.taxLabel}
@@ -113,15 +115,15 @@ export default function Settings() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Tax Rate (Decimal e.g., 0.2 for 20%)</label>
+                  <div data-for="taxRatePercent" className="block text-sm font-medium text-gray-700">Tax Rate (%)</div>
                   <input 
                     type="number" 
                     step="0.01"
                     min="0"
-                    max="1"
-                    value={form.vatRate}
+                    max="100"
+                    value={form.taxRatePercent}
                     disabled={!canManageTax}
-                    onChange={e => setForm({...form, vatRate: parseFloat(e.target.value) || 0})}
+                    onChange={e => setForm({...form, taxRatePercent: parseFloat(e.target.value) || 0})}
                     className="mt-1 block w-full rounded-xl border-border/50 border p-2"
                   />
                 </div>
@@ -130,23 +132,23 @@ export default function Settings() {
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-lg font-semibold border-b pb-2">Shipping</h2>
+            <h2 className="text-lg font-semibold border-b pb-2">{t('shipping', { ns: 'checkout' })}</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Flat Shipping Rate</label>
+                <div data-for="shippingFlatRate" className="block text-sm font-medium text-gray-700">Flat Shipping Rate</div>
                 <input 
                   type="number" 
-                  value={form.flatShippingRate}
-                  onChange={e => setForm({...form, flatShippingRate: parseInt(e.target.value) || 0})}
+                  value={form.shippingFlatRate}
+                  onChange={e => setForm({...form, shippingFlatRate: parseInt(e.target.value) || 0})}
                   className="mt-1 block w-full rounded-xl border-border/50 border p-2"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Free Delivery Threshold</label>
+                <div data-for="freeShippingThreshold" className="block text-sm font-medium text-gray-700">Free Delivery Threshold</div>
                 <input 
                   type="number" 
-                  value={form.freeDeliveryThreshold}
-                  onChange={e => setForm({...form, freeDeliveryThreshold: parseInt(e.target.value) || 0})}
+                  value={form.freeShippingThreshold}
+                  onChange={e => setForm({...form, freeShippingThreshold: parseInt(e.target.value) || 0})}
                   className="mt-1 block w-full rounded-xl border-border/50 border p-2"
                 />
               </div>
@@ -154,39 +156,50 @@ export default function Settings() {
             </div>
             
             <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Per-Zone Delivery Fees</label>
-              {form.zones.map((zone, idx) => (
-                <div key={idx} className="flex gap-2 mb-2">
+              <div className="block text-sm font-medium text-gray-700 mb-2">Per-Zone Delivery Fees</div>
+              {form.deliveryZones.map((zone, idx) => (
+                <div key={idx} className="flex gap-2 mb-2 items-center">
                   <input 
                     type="text" 
-                    placeholder="Zone Name"
-                    value={zone.name}
+                    placeholder="City"
+                    value={zone.city}
                     onChange={e => {
-                      const newZones = [...form.zones];
-                      newZones[idx].name = e.target.value;
-                      setForm({...form, zones: newZones});
+                      const newZones = [...form.deliveryZones];
+                      newZones[idx].city = e.target.value;
+                      setForm({...form, deliveryZones: newZones});
+                    }}
+                    className="flex-1 rounded-xl border-border/50 border p-2 text-sm"
+                  />
+                  <input 
+                    type="text" 
+                    placeholder="Quarter"
+                    value={zone.quarter}
+                    onChange={e => {
+                      const newZones = [...form.deliveryZones];
+                      newZones[idx].quarter = e.target.value;
+                      setForm({...form, deliveryZones: newZones});
                     }}
                     className="flex-1 rounded-xl border-border/50 border p-2 text-sm"
                   />
                   <input 
                     type="number" 
                     placeholder="Rate"
-                    value={zone.rate}
+                    value={zone.fee}
                     onChange={e => {
-                      const newZones = [...form.zones];
-                      newZones[idx].rate = parseInt(e.target.value) || 0;
-                      setForm({...form, zones: newZones});
+                      const newZones = [...form.deliveryZones];
+                      newZones[idx].fee = parseInt(e.target.value) || 0;
+                      setForm({...form, deliveryZones: newZones});
                     }}
-                    className="w-32 rounded-xl border-border/50 border p-2 text-sm"
+                    className="w-24 rounded-xl border-border/50 border p-2 text-sm"
                   />
                   <button type="button" onClick={() => {
-                    const newZones = [...form.zones];
+                    const newZones = [...form.deliveryZones];
                     newZones.splice(idx, 1);
-                    setForm({...form, zones: newZones});
+                    setForm({...form, deliveryZones: newZones});
                   }} className="text-red-500 px-2 text-sm">Remove</button>
                 </div>
               ))}
-              <button type="button" onClick={() => setForm({...form, zones: [...form.zones, {name: '', rate: 0}]})} className="text-accent text-sm mt-1">+ Add Zone</button>
+              <button type="button" onClick={() => setForm({...form, deliveryZones: [...form.deliveryZones, {city: '', quarter: '', fee: 0}]})} className="text-accent text-sm mt-1">+ Add Zone</button>
             </div>
 
           </div>
@@ -211,9 +224,9 @@ export default function Settings() {
               <span className="text-fg/80">Shipping:</span>
               <span className="font-medium">{shippingCost === 0 ? 'Free' : formatPrice(shippingCost)}</span>
             </div>
-            {form.vatEnabled && (
+            {form.taxEnabled && (
               <div className="flex justify-between">
-                <span className="text-fg/80">{form.taxLabel} ({(form.vatRate * 100).toFixed(1)}%):</span>
+                <span className="text-fg/80">{form.taxLabel} ({form.taxRatePercent.toFixed(2)}%):</span>
                 <span className="font-medium">{formatPrice(taxCost)}</span>
               </div>
             )}

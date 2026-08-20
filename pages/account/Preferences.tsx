@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '../../store/authStore';
@@ -6,6 +7,8 @@ import { db } from '../../lib/firebase';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
 export default function Preferences() {
+  const { t } = useTranslation(['account', 'common']);
+
   const user = useAuthStore(state => state.user);
   
   const [marketing, setMarketing] = useState(true);
@@ -59,7 +62,7 @@ export default function Preferences() {
 
   return (
     <div className="space-y-8 max-w-2xl">
-      <h2 className="text-2xl font-semibold tracking-tight">Preferences</h2>
+      <h2 className="text-2xl font-semibold tracking-tight">{t('preferences', { ns: 'account' })}</h2>
 
       <div className="bg-canvas border border-border/50 rounded-[2rem] p-6 sm:p-10 shadow-sm">
         <form onSubmit={handleSave} className="space-y-8">
@@ -72,7 +75,7 @@ export default function Preferences() {
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Language & Region</h3>
-            <label htmlFor="language" className="block text-sm font-medium mb-2 text-fg-muted">Preferred Language</label>
+            <div data-for="language" className="block text-sm font-medium mb-2 text-fg-muted">{t('preferred_language', { ns: 'account' })}</div>
             <select 
               id="language"
               value={language}
@@ -87,9 +90,9 @@ export default function Preferences() {
           <hr className="border-border/50" />
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Communications</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('communications', { ns: 'account' })}</h3>
             <div className="space-y-4">
-              <label className="flex items-start gap-3 cursor-pointer">
+              <div className="flex items-start gap-3 cursor-pointer">
                 <input 
                   type="checkbox" 
                   checked={orderUpdates}
@@ -97,12 +100,12 @@ export default function Preferences() {
                   className="mt-1 w-4 h-4 text-accent border-border rounded focus:ring-accent"
                 />
                 <div>
-                  <p className="font-medium">Order Updates</p>
-                  <p className="text-sm text-fg-muted">Receive email notifications about your order status and delivery.</p>
+                  <p className="font-medium">{t('order_updates', { ns: 'account' })}</p>
+                  <p className="text-sm text-fg-muted">{t('receive_email_notifications', { ns: 'account' })}</p>
                 </div>
-              </label>
+              </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
+              <div className="flex items-start gap-3 cursor-pointer">
                 <input 
                   type="checkbox" 
                   checked={marketing}
@@ -111,9 +114,9 @@ export default function Preferences() {
                 />
                 <div>
                   <p className="font-medium">Announcements & Offers</p>
-                  <p className="text-sm text-fg-muted">Receive exclusive offers, product announcements, and Apple Store news.</p>
+                  <p className="text-sm text-fg-muted">Receive exclusive offers, product announcements, and Novan Telecom news.</p>
                 </div>
-              </label>
+              </div>
             </div>
           </div>
 

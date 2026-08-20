@@ -10,7 +10,7 @@ async function getToken() {
 
 export async function createOrder(data: any) {
   const token = await getToken();
-  const res = await fetch(API_URL, {
+  const res = await fetch('/api/checkout', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

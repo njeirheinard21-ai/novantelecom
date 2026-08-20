@@ -1,11 +1,14 @@
+import { useTranslation } from 'react-i18next';
+import { useLocalizedNavigate as useNavigate } from '../../hooks/useLocalizedNavigate';
+import { LocalizedLink as Link } from '../../components/ui/LocalizedLink';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
 import { registerWithEmail } from '../../lib/auth';
 import { userRepository } from '../../data';
 import { AuthLayout } from './AuthLayout';
 import { ArrowRight } from 'lucide-react';
 
 export default function Register() {
+  const { t } = useTranslation(['auth']);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -39,8 +42,8 @@ export default function Register() {
 
   return (
     <AuthLayout 
-      title="Create your Apple ID" 
-      subtitle="One Apple ID is all you need to access all Apple services."
+      title="Create your account" 
+      subtitle="One account is all you need to access Novan Telecom services."
       image="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=2000&auto=format&fit=crop"
     >
       {error && (
@@ -52,7 +55,7 @@ export default function Register() {
       <form onSubmit={handleRegister} className="space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="firstName" className="block text-sm font-medium mb-2 text-fg-muted">First Name</label>
+            <label htmlFor="firstName" className="block text-sm font-medium mb-2 text-fg-muted">{t('first_name', { ns: 'auth' })}</label>
             <input 
               id="firstName" 
               type="text" 
@@ -63,7 +66,7 @@ export default function Register() {
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium mb-2 text-fg-muted">Last Name</label>
+            <label htmlFor="lastName" className="block text-sm font-medium mb-2 text-fg-muted">{t('last_name', { ns: 'auth' })}</label>
             <input 
               id="lastName" 
               type="text" 
@@ -76,7 +79,7 @@ export default function Register() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">Email</label>
+          <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">{t('email', { ns: 'auth' })}</label>
           <input 
             id="email" 
             type="email" 
@@ -89,7 +92,7 @@ export default function Register() {
         </div>
         
         <div>
-          <label htmlFor="password" className="block text-sm font-medium mb-2 text-fg-muted">Password</label>
+          <label htmlFor="password" className="block text-sm font-medium mb-2 text-fg-muted">{t('password', { ns: 'auth' })}</label>
           <input 
             id="password" 
             type="password" 
@@ -100,7 +103,7 @@ export default function Register() {
             placeholder="••••••••"
             minLength={6}
           />
-          <p className="text-xs text-fg-muted mt-2">Password must be at least 6 characters.</p>
+          <p className="text-xs text-fg-muted mt-2">{t('password_min_chars', { ns: 'auth' })}</p>
         </div>
         
         <button 
@@ -114,7 +117,7 @@ export default function Register() {
       </form>
       
       <div className="mt-10 text-center text-sm text-fg-muted">
-        Already have an Apple ID?{' '}
+        Already have an account?{' '}
         <Link to="/login" className="text-accent font-medium hover:underline">
           Sign in.
         </Link>

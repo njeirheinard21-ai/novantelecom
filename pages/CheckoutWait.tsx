@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
+import { useLocalizedNavigate as useNavigate } from '../hooks/useLocalizedNavigate';
 import { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router';
+import { useSearchParams, } from 'react-router';
 import { Container } from '../components/ui/Container';
 import { db } from '../lib/firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
 
 export default function CheckoutWait() {
+  const { t } = useTranslation('common');
+
   const [searchParams] = useSearchParams();
   const paymentId = searchParams.get('paymentId');
   const navigate = useNavigate();

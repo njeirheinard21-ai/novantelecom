@@ -76,7 +76,7 @@ router.get('/dashboard', requirePermission('orders:read'), asyncHandler(async (r
 router.get('/settings', requirePermission('settings:manage'), asyncHandler(async (req: any, res: any) => {
   const doc = await adminDb.collection('settings').doc('store').get();
   if (!doc.exists) {
-    return res.json({ vatEnabled: false, vatRate: 0, taxLabel: 'VAT', flatShippingRate: 0, freeDeliveryThreshold: 0, zones: [] });
+    return res.json({ taxEnabled: false, taxRatePercent: 0, taxLabel: 'VAT', shippingFlatRate: 0, freeShippingThreshold: 0, deliveryZones: [] });
   }
   res.json(doc.data());
 }));
@@ -85,8 +85,8 @@ router.post('/settings', requirePermission('settings:manage'), asyncHandler(asyn
     const docRef = adminDb.collection('settings').doc('store');
   const data = req.body;
   
-  if (data.vatEnabled !== undefined && !hasPermission(req.userRole, 'settings:tax')) {
-    delete data.vatEnabled; // silently ignore if no perm
+  if (data.taxEnabled !== undefined && !hasPermission(req.userRole, 'settings:tax')) {
+    delete data.taxEnabled; // silently ignore if no perm
   }
   
   await docRef.set(data, { merge: true });

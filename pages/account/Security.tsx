@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import { auth, resetPassword } from '../../lib/auth';
 import { updatePassword } from 'firebase/auth';
 
 export default function Security() {
+  const { t } = useTranslation(['account', 'common']);
+
   const user = useAuthStore(state => state.user);
   
   const [newPassword, setNewPassword] = useState('');
@@ -49,18 +52,18 @@ export default function Security() {
 
   return (
     <div className="space-y-8 max-w-2xl">
-      <h2 className="text-2xl font-semibold tracking-tight">Security</h2>
+      <h2 className="text-2xl font-semibold tracking-tight">{t('security', { ns: 'account' })}</h2>
 
       {/* Change Password */}
       <div className="bg-canvas border border-border/50 rounded-[2rem] p-6 sm:p-10 shadow-sm">
-        <h3 className="text-xl font-semibold mb-6">Change Password</h3>
+        <h3 className="text-xl font-semibold mb-6">{t('change_password', { ns: 'account' })}</h3>
         
         <form onSubmit={handleUpdatePassword} className="space-y-6">
           {error && <div className="p-4 bg-red-50 text-red-500 rounded-xl text-sm">{error}</div>}
           {success && <div className="p-4 bg-green-50 text-green-600 rounded-xl text-sm">{success}</div>}
 
           <div>
-            <label htmlFor="newPassword" className="block text-sm font-medium mb-2 text-fg-muted">New Password</label>
+            <label htmlFor="newPassword" className="block text-sm font-medium mb-2 text-fg-muted">{t('new_password', { ns: 'account' })}</label>
             <input 
               id="newPassword"
               type="password" 
@@ -72,7 +75,7 @@ export default function Security() {
           </div>
 
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium mb-2 text-fg-muted">Confirm New Password</label>
+            <label htmlFor="confirmPassword" className="block text-sm font-medium mb-2 text-fg-muted">{t('confirm_new_password', { ns: 'account' })}</label>
             <input 
               id="confirmPassword"
               type="password" 
