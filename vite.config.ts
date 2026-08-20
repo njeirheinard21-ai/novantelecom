@@ -2,24 +2,10 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
-import { siteConfig } from './src/config/site';
 
 export default defineConfig(() => {
   return {
-    plugins: [
-      react(), 
-      tailwindcss(),
-      {
-        name: 'html-transform',
-        transformIndexHtml(html) {
-          return html
-            .replace(/%SITE_NAME%/g, siteConfig.name)
-            .replace(/%SITE_EMAIL%/g, siteConfig.contact.email)
-            .replace(/%SITE_PHONE%/g, siteConfig.contact.phone)
-            .replace(/%SITE_WHATSAPP_URL%/g, siteConfig.contact.whatsapp);
-        }
-      }
-    ],
+    plugins: [react(), tailwindcss()],
     build: {
       target: ['es2020', 'safari15.4', 'chrome87', 'firefox78', 'edge88'],
       chunkSizeWarningLimit: 1500,
