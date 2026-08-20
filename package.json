@@ -13,9 +13,6 @@
     "test": "vitest run",
     "start": "NODE_ENV=production node dist/server.cjs"
   },
-  "overrides": {
-    "node-domexception": "file:./mocks/node-domexception"
-  },
   "dependencies": {
     "@hookform/resolvers": "^5.7.1",
     "@tailwindcss/vite": "^4.1.14",
