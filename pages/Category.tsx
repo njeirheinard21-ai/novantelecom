@@ -82,7 +82,7 @@ export default function Category() {
             {t('buy')} {id}
           </h1>
           <p className="text-xl text-fg-muted">
-            {t('all_models', { ns: 'products' })}
+            Tous les modèles.
           </p>
         </Container>
       </div>
@@ -114,7 +114,7 @@ export default function Category() {
                     }}
                     className={`text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-accent rounded ${!selectedLine ? 'font-bold text-black' : 'text-fg/80'}`}
                   >
-                    {t('all_lines', { ns: 'products' })}
+                    Toutes les lignes
                   </button>
                 </li>
                 {lines.map(line => (
@@ -146,7 +146,7 @@ export default function Category() {
                     }}
                     className={`text-sm hover:underline focus:outline-none focus:ring-2 focus:ring-accent rounded ${!selectedGen ? 'font-bold text-black' : 'text-fg/80'}`}
                   >
-                    {t('all_generations', { ns: 'products' })}
+                    Toutes les générations
                   </button>
                 </li>
                 {generations.map(gen => (

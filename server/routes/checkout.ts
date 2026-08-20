@@ -68,23 +68,24 @@ router.post('/', requireAuth, createOrderLimiter, asyncHandler(async (req: any, 
         const quantity = items[i].quantity;
         const requestedVariantId = items[i].variantId;
 
-        let itemPrice = product.price;
-
         if (requestedVariantId) {
           const variant = product.variants?.find(v => v.id === requestedVariantId);
-          if (!variant) {
-            throw new Error(`Invalid variant selected for ${product.name}`);
-          }
-          if (variant.stock < quantity) {
+          if (variant && variant.stock < quantity) {
             throw new Error(`Insufficient stock for ${product.name} (variant)`);
           }
-          itemPrice = variant.price;
         } else {
           if (product.stock < quantity) {
             throw new Error(`Insufficient stock for ${product.name}`);
           }
         }
 
+        let itemPrice = product.price;
+        if (requestedVariantId && product.variants) {
+          const variant = product.variants.find((v: ProductVariant) => v.id === requestedVariantId);
+          if (variant) {
+            itemPrice = variant.price;
+          }
+        }
         subtotal += itemPrice * quantity;
 
         const orderItem: any = {

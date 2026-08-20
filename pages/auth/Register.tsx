@@ -42,8 +42,8 @@ export default function Register() {
 
   return (
     <AuthLayout 
-      title="Create your account" 
-      subtitle="One account is all you need to access Novan Telecom services."
+      title="Create your Apple ID" 
+      subtitle="One Apple ID is all you need to access all Apple services."
       image="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=2000&auto=format&fit=crop"
     >
       {error && (
@@ -117,7 +117,7 @@ export default function Register() {
       </form>
       
       <div className="mt-10 text-center text-sm text-fg-muted">
-        Already have an account?{' '}
+        Already have an Apple ID?{' '}
         <Link to="/login" className="text-accent font-medium hover:underline">
           Sign in.
         </Link>

@@ -126,9 +126,9 @@ export default function App() {
                 <Route path="wishlist" element={<AccountWishlist />} />
               </Route>
 
-              <Route path="admin" element={<RouteGuard requireAuth requireRole={['staff', 'admin', 'super_admin']}><AdminLayout /></RouteGuard>}>
+<Route path="admin" element={<RouteGuard requireAuth requirePermission="orders:read"><AdminLayout /></RouteGuard>}>
                 <Route index element={<Dashboard />} />
-                <Route path="products" element={<RouteGuard requireAuth requirePermission="admin:products:read"><AdminProductList /></RouteGuard>} />
+                <Route path="products" element={<RouteGuard requireAuth requirePermission="products:read"><AdminProductList /></RouteGuard>} />
                 <Route path="products/new" element={<RouteGuard requireAuth requirePermission="products:write"><AdminProductForm /></RouteGuard>} />
                 <Route path="products/:id/edit" element={<RouteGuard requireAuth requirePermission="products:write"><AdminProductForm /></RouteGuard>} />
                 <Route path="orders" element={<RouteGuard requireAuth requirePermission="orders:read"><AdminOrderList /></RouteGuard>} />

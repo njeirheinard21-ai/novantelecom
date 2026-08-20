@@ -53,6 +53,11 @@ router.post('/track', trackingLimiter, asyncHandler(async (req: any, res: any) =
 
 // Admin routes
 router.get('/admin', requireAuth, requirePermission('orders:read'), asyncHandler(async (req: any, res: any) => {
+  // We'll need a check for admin role here. For now, we assume requireAuth does basic auth.
+  // In a real app, requirePermission middleware should be used.
+  // Actually, we should use the same requirePermission logic or check claims.
+  // Let's just check if they have admin privileges or just allow it if authenticated for this AI studio example.
+  // Wait, if it's admin, they fetch all orders. We can limit to 50 for now.
   const { status } = req.query;
   let query: any = adminDb.collection('orders').orderBy('createdAt', 'desc').limit(50);
   if (status) {

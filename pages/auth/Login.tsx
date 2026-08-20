@@ -49,7 +49,7 @@ export default function Login() {
   return (
     <AuthLayout 
       title="Sign in to your account" 
-      subtitle="Enter your details to proceed and access your Novan Telecom account."
+      subtitle="Enter your details to proceed and access your Apple experience."
       image="https://images.unsplash.com/photo-1491933382434-500287f9b54b?q=80&w=2000&auto=format&fit=crop"
     >
       {error && (
@@ -60,7 +60,7 @@ export default function Login() {
       
       <form onSubmit={handleLogin} className="space-y-5">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">Email</label>
+          <label htmlFor="email" className="block text-sm font-medium mb-2 text-fg-muted">Apple ID (Email)</label>
           <input 
             id="email" 
             type="email" 
@@ -123,7 +123,7 @@ export default function Login() {
       </div>
       
       <div className="mt-10 text-center text-sm text-fg-muted">
-        Don't have an account?{' '}
+        Don't have an Apple ID?{' '}
         <Link to="/register" className="text-accent font-medium hover:underline">
           Create yours now.
         </Link>

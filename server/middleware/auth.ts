@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { Request, Response, NextFunction } from 'express';
 import { adminAuth, adminDb } from '../firebase-admin';
 import { Permission, hasPermission, Role } from '../../lib/permissions';

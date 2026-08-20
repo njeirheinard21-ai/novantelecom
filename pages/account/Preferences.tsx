@@ -114,7 +114,7 @@ export default function Preferences() {
                 />
                 <div>
                   <p className="font-medium">Announcements & Offers</p>
-                  <p className="text-sm text-fg-muted">Receive exclusive offers, product announcements, and Novan Telecom news.</p>
+                  <p className="text-sm text-fg-muted">Receive exclusive offers, product announcements, and Apple Store news.</p>
                 </div>
               </div>
             </div>
